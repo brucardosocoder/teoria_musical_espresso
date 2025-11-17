@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:url" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Teoria Musical">
+    <meta property="og:description" content="Teoria Musical">
+    <meta property="og:image" content="https://brucardosocoder.github.io/teoria_musical_espresso/teoria_musicalog.png">    
+    <meta property="og:logo" content="https://brucardosocoder.github.io/teoria_musical_espresso/teoria_musicalog.png">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta property="twitter:url" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta name="twitter:title" content="Teoria Musical">
+    <meta name="twitter:description" content="Teoria Musical">
+    <meta name="twitter:image" content="https://brucardosocoder.github.io/luabrilhante/teoria_musical_espresso/teoria_musicalog.png">
+    <title>Tríades (Formação de Acordes) | Teoria Musical Espresso</title>
+    <style>
+        :root {
+            /* Cores Tema Tríades (Laranja/Amarelo) */
+            --color-primary: #f97316; /* Laranja */
+            --color-primary-light: #fdba74;
+            --color-secondary: #f59e0b; /* Âmbar */
+            --color-accent: #ef4444;
+            --color-background: #fff7ed;
+            --color-foreground: #9a3412;
+            --color-card: #ffffff;
+            --color-border: #fed7aa;
+            --color-muted: #fff1e5;
+            --color-muted-text: #b45309;
+            
+            /* Espaçamento */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            
+            /* Tipografia */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --font-size-5xl: 3rem;
+            
+            /* Raio de borda */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-background);
+            color: var(--color-foreground);
+            line-height: 1.6;
+            font-size: var(--font-size-base);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--color-background) 0%, var(--color-muted) 100%);
+            border-bottom: 2px solid var(--color-border);
+            padding: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .header h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 auto;
+        }
+        
+        .main {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .section-card {
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-3xl);
+        }
+        
+        h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: var(--spacing-sm);
+        }
+        
+        h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-secondary);
+        }
+        
+        p {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        th, td {
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--color-muted);
+            font-weight: 700;
+            color: var(--color-foreground);
+        }
+        
+        td {
+            background-color: var(--color-card);
+        }
+        
+        .formula-box {
+            background-color: var(--color-muted);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--color-primary-light);
+            text-align: center;
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-xl);
+            color: var(--color-primary);
+        }
+        
+        .next-steps {
+            background-color: var(--color-muted);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-3xl);
+        }
+        
+        .next-steps h3 {
+            color: var(--color-foreground);
+            margin-top: 0;
+        }
+        
+        .next-steps p {
+            font-size: var(--font-size-lg);
+            color: var(--color-muted-text);
+        }
+        
+        .highlight {
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        
+        .footer {
+            border-top: 1px solid var(--color-border);
+            background-color: var(--color-muted);
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-3xl);
+        }
+        
+        .footer p {
+            text-align: center;
+            font-size: var(--font-size-sm);
+            color: var(--color-muted-text);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-xl);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease-out;
+            width: 100%;
+            justify-content: center;
+            text-decoration: none;
+            background-color: var(--color-primary);
+            color: white;
+        }
+        
+        .btn:hover {
+            background-color: var(--color-primary-light);
+            box-shadow: var(--shadow-lg);
+        }
+
+         .back-btn {
+            background-color: var(--color-secondary);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+        
+        .back-btn:hover {
+            background-color: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+    <div class='header'>
+        <div class='container'>
+            <div class='header-content'>
+            <a href="index.html" class="back-btn">← Início</a>
+            <h1>Tríades (Formação de Acordes)</h1>
+        </div>
+        </div>
+    </div>
+    <div class='main'>
+        <div class='container'>
+            <div class='section-card'>
+
+<h2>O que é uma Tríade?</h2>
+<p>Uma <strong>tríade</strong> é o tipo mais fundamental de acorde na música tonal. Ela é formada pela sobreposição de três notas, construídas em intervalos de terça a partir de uma nota fundamental (a <strong>tônica</strong>).</p>
+<p>As três notas de uma tríade são:</p>
+<ol>
+<li><strong>Tônica (ou Fundamental):</strong> A nota que dá nome ao acorde (1º grau).</li>
+<li><strong>Terça:</strong> A nota a uma distância de terça da tônica (3º grau).</li>
+<li><strong>Quinta:</strong> A nota a uma distância de quinta da tônica (5º grau).</li>
+</ol>
+<h2>Tipos de Tríades</h2>
+<p>A qualidade de uma tríade (Maior, Menor, Aumentada ou Diminuta) é determinada pela combinação da <strong>Terça</strong> e da <strong>Quinta</strong> em relação à Tônica.</p>
+<h3>1. Tríade Maior</h3>
+<ul>
+<li><strong>Estrutura:</strong> Tônica + <strong>Terça Maior</strong> + <strong>Quinta Justa</strong>.</li>
+<li><strong>Intervalos:</strong> 4 semitons (Tônica à Terça) + 3 semitons (Terça à Quinta).</li>
+<li><strong>Exemplo (Dó Maior):</strong> Dó (Tônica) + Mi (Terça Maior) + Sol (Quinta Justa).</li>
+<li><strong>Caráter:</strong> Brilhante, alegre, estável.</li>
+</ul>
+<h3>2. Tríade Menor</h3>
+<ul>
+<li><strong>Estrutura:</strong> Tônica + <strong>Terça Menor</strong> + <strong>Quinta Justa</strong>.</li>
+<li><strong>Intervalos:</strong> 3 semitons (Tônica à Terça) + 4 semitons (Terça à Quinta).</li>
+<li><strong>Exemplo (Dó Menor):</strong> Dó (Tônica) + Mi♭ (Terça Menor) + Sol (Quinta Justa).</li>
+<li><strong>Caráter:</strong> Melancólico, triste, introspectivo.</li>
+</ul>
+<h3>3. Tríade Diminuta</h3>
+<ul>
+<li><strong>Estrutura:</strong> Tônica + <strong>Terça Menor</strong> + <strong>Quinta Diminuta</strong>.</li>
+<li><strong>Intervalos:</strong> 3 semitons (Tônica à Terça) + 3 semitons (Terça à Quinta).</li>
+<li><strong>Exemplo (Dó Diminuto):</strong> Dó (Tônica) + Mi♭ (Terça Menor) + Sol♭ (Quinta Diminuta).</li>
+<li><strong>Caráter:</strong> Tensão, instabilidade, dissonância suave.</li>
+</ul>
+<h3>4. Tríade Aumentada</h3>
+<ul>
+<li><strong>Estrutura:</strong> Tônica + <strong>Terça Maior</strong> + <strong>Quinta Aumentada</strong>.</li>
+<li><strong>Intervalos:</strong> 4 semitons (Tônica à Terça) + 4 semitons (Terça à Quinta).</li>
+<li><strong>Exemplo (Dó Aumentado):</strong> Dó (Tônica) + Mi (Terça Maior) + Sol# (Quinta Aumentada).</li>
+<li><strong>Caráter:</strong> Tensão, suspense, sonoridade vaga.</li>
+</ul>
+<h2>Resumo da Estrutura das Tríades</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Tríade</th>
+<th style="text-align: center;">Tônica → Terça</th>
+<th style="text-align: center;">Terça → Quinta</th>
+<th style="text-align: center;">Tônica → Quinta</th>
+<th style="text-align: center;">Semitons (1ª → 3ª → 5ª)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Maior</strong></td>
+<td style="text-align: center;">Terça Maior (4 S)</td>
+<td style="text-align: center;">Terça Menor (3 S)</td>
+<td style="text-align: center;">Quinta Justa (7 S)</td>
+<td style="text-align: center;">4 + 3 = 7</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Menor</strong></td>
+<td style="text-align: center;">Terça Menor (3 S)</td>
+<td style="text-align: center;">Terça Maior (4 S)</td>
+<td style="text-align: center;">Quinta Justa (7 S)</td>
+<td style="text-align: center;">3 + 4 = 7</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Diminuta</strong></td>
+<td style="text-align: center;">Terça Menor (3 S)</td>
+<td style="text-align: center;">Terça Menor (3 S)</td>
+<td style="text-align: center;">Quinta Diminuta (6 S)</td>
+<td style="text-align: center;">3 + 3 = 6</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Aumentada</strong></td>
+<td style="text-align: center;">Terça Maior (4 S)</td>
+<td style="text-align: center;">Terça Maior (4 S)</td>
+<td style="text-align: center;">Quinta Aumentada (8 S)</td>
+<td style="text-align: center;">4 + 4 = 8</td>
+</tr>
+</tbody>
+</table>
+<h2>Inversões de Tríades</h2>
+<p>Um acorde não precisa ter a tônica como nota mais grave para ser considerado o mesmo acorde. As <strong>inversões</strong> alteram a nota do baixo, mas mantêm a identidade do acorde.</p>
+<ol>
+<li><strong>Estado Fundamental:</strong> A Tônica está no baixo. (Ex: Dó - Mi - Sol)</li>
+<li><strong>Primeira Inversão:</strong> A Terça está no baixo. (Ex: Mi - Sol - Dó)</li>
+<li><strong>Segunda Inversão:</strong> A Quinta está no baixo. (Ex: Sol - Dó - Mi)</li>
+</ol>
+
+    <div class='next-steps'>
+        <h3>Próximos Passos</h3>
+        <p>Com o domínio das Tríades, você está pronto para entender como elas se organizam dentro de uma tonalidade para formar o Campo Harmônico.</p>
+        <p><strong>Próxima Aula:</strong> Campo Harmônico Maior e Menor.</p>
+        <p><strong>Conceito Chave:</strong> Funções Harmônicas (Tônica, Dominante, Subdominante).</p>
+    </div>
+    
+            </div>
+        </div>
+    </div>
+    <div class='footer'>
+        <div class='container'>
+            <p>&copy; 2025 Teoria Musical Espresso. Todos os direitos reservados. Desenvolvido por <a href="https://wa.me/5521989978029" target="_blank" class="underline">Bru Cardoso Coder.</a></p>
+        </div>
+    </div>
+</body>
+</html>

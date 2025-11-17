@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:url" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Teoria Musical">
+    <meta property="og:description" content="Teoria Musical">
+    <meta property="og:image" content="https://brucardosocoder.github.io/teoria_musical_espresso/teoria_musicalog.png">    
+    <meta property="og:logo" content="https://brucardosocoder.github.io/teoria_musical_espresso/teoria_musicalog.png">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta property="twitter:url" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta name="twitter:title" content="Teoria Musical">
+    <meta name="twitter:description" content="Teoria Musical">
+    <meta name="twitter:image" content="https://brucardosocoder.github.io/luabrilhante/teoria_musical_espresso/teoria_musicalog.png">
+    <title>Exercício Interativo: Escalas Menores | Teoria Musical Espresso Espresso</title>
+    <style>
+        :root {
+            /* Cores Tema Escalas Menores (Roxo/Azul) */
+            --color-primary: #7c3aed; /* Roxo */
+            --color-primary-light: #a78bfa;
+            --color-secondary: #4f46e5; /* Índigo */
+            --color-accent: #f59e0b;
+            --color-background: #f5f3ff;
+            --color-foreground: #3730a3;
+            --color-card: #ffffff;
+            --color-border: #c4b5fd;
+            --color-muted: #ede9fe;
+            --color-muted-text: #6d28d9;
+            
+            /* Espaçamento */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            
+            /* Tipografia */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --font-size-5xl: 3rem;
+            
+            /* Raio de borda */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-background);
+            color: var(--color-foreground);
+            line-height: 1.6;
+            font-size: var(--font-size-base);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--color-background) 0%, var(--color-muted) 100%);
+            border-bottom: 2px solid var(--color-border);
+            padding: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .header h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .main {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .section-card {
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-3xl);
+        }
+        
+        h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: var(--spacing-sm);
+        }
+        
+        h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-secondary);
+        }
+        
+        p {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-xl);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease-out;
+            width: 100%;
+            justify-content: center;
+            text-decoration: none;
+            background-color: var(--color-primary);
+            color: white;
+            margin-top: var(--spacing-xl);
+        }
+        
+        .btn:hover {
+            background-color: var(--color-primary-light);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .footer {
+            border-top: 1px solid var(--color-border);
+            background-color: var(--color-muted);
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-3xl);
+        }
+        
+        .footer p {
+            text-align: center;
+            font-size: var(--font-size-sm);
+            color: var(--color-muted-text);
+        }
+        
+        /* Estilos do Exercício Interativo */
+        .question-block {
+            margin-bottom: var(--spacing-2xl);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+        }
+        
+        .question-block h3 {
+            margin-top: 0;
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-foreground);
+        }
+        
+        .option {
+            display: flex; /* Garante que o feedback fique ao lado */
+            align-items: center;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+            background-color: var(--color-muted);
+        }
+        
+        .option:hover:not(.disabled) {
+            background-color: #e0f2f1; /* Cor de hover suave */
+        }
+        
+        .option.correct {
+            background-color: #d1fae5 !important; /* Verde bem claro */
+            border-color: #10b981 !important; /* Verde forte */
+            color: #065f46;
+            font-weight: 600;
+        }
+        
+        .option.incorrect {
+            background-color: #fee2e2 !important; /* Vermelho bem claro */
+            border-color: #ef4444 !important; /* Vermelho forte */
+            color: #991b1b;
+            font-weight: 600;
+        }
+        
+        .option.disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .feedback {
+            margin-left: auto;
+            font-weight: 700;
+            padding-left: var(--spacing-md);
+            flex-shrink: 0; /* Impede que o feedback encolha */
+        }
+        
+        .feedback.correct-text {
+            color: #10b981;
+        }
+        
+        .feedback.incorrect-text {
+            color: #ef4444;
+        }
+        
+        .back-to-lesson {
+            margin-top: var(--spacing-3xl);
+        }
+    </style>
+</head>
+<body>
+    <div class='header'>
+        <div class='container'>
+            <h1>Teoria Musical Espresso</h1>
+        </div>
+    </div>
+    <div class='main'>
+        <div class='container'>
+            <div class='section-card'>
+
+<h2>Teste seu Conhecimento!</h2>
+<p>Este exercício irá testar sua compreensão sobre a Escala Menor Natural, Harmônica e Melódica.</p>
+<h3>Questão 1: Relativa Menor</h3>
+<p>Qual é a relativa menor de Sol Maior?</p>
+<ul>
+<li>A) Lá Menor</li>
+<li>B) Mi Menor (Correta)</li>
+<li>C) Dó Menor</li>
+<li>D) Ré Menor</li>
+</ul>
+<h3>Questão 2: Característica da Menor Harmônica</h3>
+<p>Qual é a principal característica da Escala Menor Harmônica?</p>
+<ul>
+<li>A) O 6º grau é elevado em um semitom.</li>
+<li>B) O 7º grau é elevado em um semitom. (Correta)</li>
+<li>C) O 3º grau é abaixado em um semitom.</li>
+<li>D) É idêntica à Escala Maior.</li>
+</ul>
+<h3>Questão 3: Intervalo Exótico</h3>
+<p>Qual escala menor possui um intervalo de segunda aumentada (um tom e meio) entre o 6º e o 7º grau?</p>
+<ul>
+<li>A) Menor Natural</li>
+<li>B) Menor Melódica (Ascendente)</li>
+<li>C) Menor Harmônica (Correta)</li>
+<li>D) Menor Melódica (Descendente)</li>
+</ul>
+<h3>Questão 4: Escala Melódica Descendente</h3>
+<p>A Escala Menor Melódica em sua forma descendente é idêntica a qual outra escala?</p>
+<ul>
+<li>A) Escala Maior</li>
+<li>B) Escala Menor Harmônica</li>
+<li>C) Escala Menor Natural (Correta)</li>
+<li>D) Escala Pentatônica</li>
+</ul>
+<h3>Questão 5: Fórmula da Menor Natural</h3>
+<p>Qual é a fórmula correta de Tons (T) e Semitons (S) para a Escala Menor Natural?</p>
+<ul>
+<li>A) T - T - S - T - T - T - S</li>
+<li>B) T - S - T - T - S - T - T (Correta)</li>
+<li>C) T - S - T - T - S - 1½ - S</li>
+<li>D) S - T - T - S - T - T - T</li>
+</ul>
+<h2>Voltar para a Aula</h2>
+<ul>
+<li><strong>Voltar para a Aula:</strong> Escalas Menores (Natural, Harmônica e Melódica).</li>
+</ul>
+            </div>
+        </div>
+    </div>
+    <div class='footer'>
+        <div class='container'>
+            <p>&copy; 2025 Teoria Musical Espresso. Todos os direitos reservados. Desenvolvido por <a href="https://wa.me/5521989978029" target="_blank" class="underline">Bru Cardoso Coder.</a></p>
+        </div>
+    </div>
+    <script>
+        const correctAnswers = {
+            'q1': 'B',
+            'q2': 'B',
+            'q3': 'C',
+            'q4': 'C',
+            'q5': 'B'
+        };
+
+        function checkAnswer(questionId, selectedOption) {
+            const questionBlock = document.getElementById(questionId);
+            const options = questionBlock.querySelectorAll('.option');
+            const correctAnswer = correctAnswers[questionId];
+
+            // Desabilita todos os botões de opção para esta questão
+            options.forEach(option => {
+                option.classList.add('disabled');
+                option.onclick = null; // Remove o evento de clique
+            });
+
+            // Encontra a opção selecionada
+            const selectedElement = questionBlock.querySelector(`[data-option='${selectedOption}']`);
+            const feedbackElement = document.createElement('span');
+            feedbackElement.classList.add('feedback');
+
+            if (selectedOption === correctAnswer) {
+                selectedElement.classList.add('correct');
+                feedbackElement.textContent = 'Resposta correta!';
+                feedbackElement.classList.add('correct-text');
+                selectedElement.appendChild(feedbackElement);
+            } else {
+                selectedElement.classList.add('incorrect');
+                feedbackElement.textContent = 'Resposta incorreta!';
+                feedbackElement.classList.add('incorrect-text');
+                selectedElement.appendChild(feedbackElement);
+                
+                // Destacar a resposta correta
+                const correctElement = questionBlock.querySelector(`[data-option='${correctAnswer}']`);
+                correctElement.classList.add('correct');
+                
+                // Adicionar feedback textual à resposta correta
+                const correctFeedbackElement = document.createElement('span');
+                correctFeedbackElement.classList.add('feedback', 'correct-text');
+                correctFeedbackElement.textContent = 'Resposta correta!';
+                correctElement.appendChild(correctFeedbackElement);
+            }
+        }
+
+        // Função para montar o bloco de questões a partir do HTML gerado pelo Markdown
+        function setupQuestions() {
+            const contentDiv = document.querySelector('.section-card');
+            let html = contentDiv.innerHTML;
+            
+            // Remove o título H1 do Markdown
+            html = html.replace(/<h1>.*?<\/h1>/, '');
+            
+            // Regex para encontrar blocos de Questão e Opções
+            const questionRegex = /<h3>(Questão \d+:\s*.*?)\s*<\/h3>\s*<p>(.*?)<\/p>\s*<ul>(.*?)<\/ul>/gs;
+            
+            let questionCount = 0;
+            
+            const newHtml = html.replace(questionRegex, (match, questionTitle, questionText, optionsHtml) => {
+                questionCount++;
+                const questionId = 'q' + questionCount;
+                
+                // Processa as opções
+                const optionRegex = /<li>(.*?)\s*(\(Correta\))?<\/li>/g;
+                let optionLetter = 'A';
+                
+                let optionsHtmlOutput = '';
+                
+                // Itera sobre as opções do Markdown
+                let matchOption;
+                // Reinicia o regex para o loop while
+                optionRegex.lastIndex = 0; 
+                while ((matchOption = optionRegex.exec(optionsHtml)) !== null) {
+                    const optionText = matchOption[1].trim();
+                    
+                    // Gera o HTML da opção
+                    optionsHtmlOutput += `
+                        <div class="option" data-option="${optionLetter}" onclick="checkAnswer('${questionId}', '${optionLetter}')">
+                            <strong>${optionLetter})</strong> ${optionText}
+                        </div>
+                    `;
+                    optionLetter = String.fromCharCode(optionLetter.charCodeAt(0) + 1);
+                }
+                
+                // Retorna o bloco de questão formatado
+                return `
+                    <div class="question-block" id="${questionId}">
+                        <h3>${questionTitle}</h3>
+                        <p>${questionText}</p>
+                        ${optionsHtmlOutput}
+                    </div>
+                `;
+            });
+            
+            // Remove a seção de Voltar para a Aula do Markdown original
+            const finalHtml = newHtml.replace(/<h2>Voltar para a Aula<\/h2>.*$/, '');
+            
+            // Adiciona o botão de volta para a aula
+            const backToLessonHtml = `
+                <div class="back-to-lesson">
+                    <a href="escalasmenores.html" class="btn">← Voltar para a Aula</a>
+                </div>
+            `;
+            
+            contentDiv.innerHTML = finalHtml + backToLessonHtml;
+        }
+
+        window.onload = setupQuestions;
+    </script>
+</body>
+</html>

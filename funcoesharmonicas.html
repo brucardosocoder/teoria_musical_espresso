@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:url" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Teoria Musical">
+    <meta property="og:description" content="Teoria Musical">
+    <meta property="og:image" content="https://brucardosocoder.github.io/teoria_musical_espresso/teoria_musicalog.png">    
+    <meta property="og:logo" content="https://brucardosocoder.github.io/teoria_musical_espresso/teoria_musicalog.png">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta property="twitter:url" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta name="twitter:title" content="Teoria Musical">
+    <meta name="twitter:description" content="Teoria Musical">
+    <meta name="twitter:image" content="https://brucardosocoder.github.io/luabrilhante/teoria_musical_espresso/teoria_musicalog.png">
+    <title>Funções Harmônicas e Cadências | Teoria Musical Espresso</title>
+    <style>
+        :root {
+            /* Cores Tema Funções Harmônicas (Verde/Ciano) */
+            --color-primary: #06b6d4; /* Ciano */
+            --color-primary-light: #67e8f9;
+            --color-secondary: #0891b2; /* Ciano Escuro */
+            --color-accent: #f59e0b;
+            --color-background: #f0f9ff;
+            --color-foreground: #0e7490;
+            --color-card: #ffffff;
+            --color-border: #a5f3fc;
+            --color-muted: #cffafe;
+            --color-muted-text: #0f766e;
+            
+            /* Espaçamento */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            
+            /* Tipografia */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --font-size-5xl: 3rem;
+            
+            /* Raio de borda */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-background);
+            color: var(--color-foreground);
+            line-height: 1.6;
+            font-size: var(--font-size-base);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--color-background) 0%, var(--color-muted) 100%);
+            border-bottom: 2px solid var(--color-border);
+            padding: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .header h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 auto;
+        }
+        
+        .main {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .section-card {
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-3xl);
+        }
+        
+        h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: var(--spacing-sm);
+        }
+        
+        h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-secondary);
+        }
+        
+        p {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        th, td {
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--color-muted);
+            font-weight: 700;
+            color: var(--color-foreground);
+        }
+        
+        td {
+            background-color: var(--color-card);
+        }
+        
+        .formula-box {
+            background-color: var(--color-muted);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--color-primary-light);
+            text-align: center;
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-xl);
+            color: var(--color-primary);
+        }
+        
+        .next-steps {
+            background-color: var(--color-muted);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-3xl);
+        }
+        
+        .next-steps h3 {
+            color: var(--color-foreground);
+            margin-top: 0;
+        }
+        
+        .next-steps p {
+            font-size: var(--font-size-lg);
+            color: var(--color-muted-text);
+        }
+        
+        .highlight {
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        
+        .footer {
+            border-top: 1px solid var(--color-border);
+            background-color: var(--color-muted);
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-3xl);
+        }
+        
+        .footer p {
+            text-align: center;
+            font-size: var(--font-size-sm);
+            color: var(--color-muted-text);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-xl);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease-out;
+            width: 100%;
+            justify-content: center;
+            text-decoration: none;
+            background-color: var(--color-primary);
+            color: white;
+        }
+        
+        .btn:hover {
+            background-color: var(--color-primary-light);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .back-btn {
+            background-color: var(--color-secondary);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+        
+        .back-btn:hover {
+            background-color: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+    <div class='header'>
+        <div class='container'>
+            <div class='header-content'>
+            <a href="index.html" class="back-btn">← Início</a>
+            <h1>Funções Harmônicas e Cadências</h1>
+        </div>
+        </div>
+        </div>
+    </div>
+    <div class='main'>
+        <div class='container'>
+            <div class='section-card'>
+
+<h2>A Harmonia Funcional</h2>
+<p>A <strong>Harmonia Funcional</strong> é o estudo de como os acordes se relacionam entre si dentro de uma tonalidade (Campo Harmônico - Dose 6) e como eles criam um senso de movimento, tensão e repouso na música.</p>
+<p>Cada acorde no Campo Harmônico possui uma <strong>Função Harmônica</strong> primária, que define seu papel na progressão:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Função</th>
+<th style="text-align: center;">Papel</th>
+<th style="text-align: center;">Acordes Principais (Maiores)</th>
+<th style="text-align: center;">Acordes Substitutos (Maiores)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Tônica (T)</strong></td>
+<td style="text-align: center;">Repouso, Estabilidade, Centro Tonal</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">III, VI</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Subdominante (SD)</strong></td>
+<td style="text-align: center;">Movimento, Preparação para a Dominante</td>
+<td style="text-align: center;">IV</td>
+<td style="text-align: center;">II</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Dominante (D)</strong></td>
+<td style="text-align: center;">Tensão, Necessidade de Resolução para a Tônica</td>
+<td style="text-align: center;">V</td>
+<td style="text-align: center;">VII°</td>
+</tr>
+</tbody>
+</table>
+<h2>Cadências: O Fim de uma Frase Musical</h2>
+<p><strong>Cadência</strong> é a sequência de acordes que conclui uma frase ou seção musical, criando um senso de repouso ou suspensão. É o "ponto final" ou a "vírgula" da música.</p>
+<p>As cadências são classificadas de acordo com o grau de resolução que proporcionam:</p>
+<h3>1. Cadência Perfeita (V → I)</h3>
+<ul>
+<li><strong>Definição:</strong> É a cadência mais forte e conclusiva. O acorde de Dominante (V) resolve para o acorde de Tônica (I).</li>
+<li><strong>Sensação:</strong> Repouso total, conclusão. É o "ponto final" definitivo.</li>
+<li><strong>Exemplo (Dó Maior):</strong> G → C (Sol Maior para Dó Maior).</li>
+</ul>
+<h3>2. Cadência Imperfeita (V → I, com inversão ou melodia no baixo)</h3>
+<ul>
+<li><strong>Definição:</strong> Também é V → I, mas com um dos acordes (ou ambos) em inversão, ou com a melodia terminando em uma nota diferente da tônica.</li>
+<li><strong>Sensação:</strong> Repouso, mas menos definitivo que a Perfeita. É um "ponto final" mais suave.</li>
+</ul>
+<h3>3. Cadência Plagal (IV → I)</h3>
+<ul>
+<li><strong>Definição:</strong> O acorde de Subdominante (IV) resolve para o acorde de Tônica (I).</li>
+<li><strong>Sensação:</strong> Repouso suave, frequentemente associada a hinos religiosos ("Amém").</li>
+<li><strong>Exemplo (Dó Maior):</strong> F → C (Fá Maior para Dó Maior).</li>
+</ul>
+<h3>4. Meia Cadência (Qualquer Acorde → V)</h3>
+<ul>
+<li><strong>Definição:</strong> A progressão termina no acorde de Dominante (V).</li>
+<li><strong>Sensação:</strong> Suspensão, tensão. Cria uma expectativa de que a música continuará. É uma "vírgula" ou "ponto de interrogação".</li>
+<li><strong>Exemplo (Dó Maior):</strong> C → G (Dó Maior para Sol Maior).</li>
+</ul>
+<h3>5. Cadência Enganosa (V → VI)</h3>
+<ul>
+<li><strong>Definição:</strong> O acorde de Dominante (V) resolve para o acorde Submediante (VI) em vez do esperado I.</li>
+<li><strong>Sensação:</strong> Surpresa, desvio. O ouvido espera a resolução para a Tônica (I), mas é "enganado" pela resolução para o VI (que tem função Tônica).</li>
+<li><strong>Exemplo (Dó Maior):</strong> G → Am (Sol Maior para Lá Menor).</li>
+</ul>
+
+    <div class='next-steps'>
+        <h3>Próximos Passos</h3>
+        <p>Com o entendimento das Funções Harmônicas e Cadências, você pode analisar e criar progressões de acordes com propósito e direção.</p>
+        <p><strong>Próxima Dose:</strong> Acordes de Sétima.</p>
+        <p><strong>Conceito Chave:</strong> Expansão das Tríades e introdução de novas tensões.</p>
+    </div>
+    
+            </div>
+        </div>
+    </div>
+    <div class='footer'>
+        <div class='container'>
+            <p>&copy; 2025 Teoria Musical Espresso. Todos os direitos reservados. Desenvolvido por <a href="https://wa.me/5521989978029" target="_blank" class="underline">Bru Cardoso Coder.</a></p>
+        </div>
+    </div>
+</body>
+</html>
