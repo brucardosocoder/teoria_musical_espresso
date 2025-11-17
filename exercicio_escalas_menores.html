@@ -243,6 +243,235 @@
         .back-to-lesson {
             margin-top: var(--spacing-3xl);
         }
+    
+        ol, ul {
+            margin-left: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Tabelas Responsivas */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Media Queries para Responsividade */
+        
+        /* Tablets e dispositivos médios (até 768px) */
+        @media (max-width: 768px) {
+            :root {
+                --font-size-3xl: 1.5rem;
+                --font-size-2xl: 1.25rem;
+                --font-size-xl: 1.125rem;
+                --font-size-lg: 1rem;
+                --spacing-xl: 1.5rem;
+                --spacing-2xl: 2rem;
+                --spacing-3xl: 2.5rem;
+            }
+
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-sm);
+            }
+
+            .header h1 {
+                font-size: var(--font-size-2xl);
+                text-align: left;
+                width: 100%;
+            }
+
+            .section-card {
+                padding: var(--spacing-lg);
+            }
+
+            table {
+                min-width: 450px;
+                font-size: var(--font-size-sm);
+            }
+
+            th, td {
+                padding: var(--spacing-xs);
+            }
+
+            .formula-box {
+                font-size: var(--font-size-base);
+                padding: var(--spacing-md);
+            }
+
+            .next-steps {
+                padding: var(--spacing-lg);
+            }
+
+            .next-steps p {
+                font-size: var(--font-size-base);
+            }
+        }
+
+        /* Smartphones (até 480px) */
+        @media (max-width: 480px) {
+            :root {
+                --font-size-3xl: 1.25rem;
+                --font-size-2xl: 1.125rem;
+                --font-size-xl: 1rem;
+                --font-size-lg: 0.9375rem;
+                --font-size-base: 0.875rem;
+                --spacing-lg: 1rem;
+                --spacing-xl: 1.25rem;
+                --spacing-2xl: 1.5rem;
+                --spacing-3xl: 2rem;
+            }
+
+            body {
+                font-size: var(--font-size-sm);
+            }
+
+            .container {
+                padding: 0 var(--spacing-xs);
+            }
+
+            .header {
+                padding: var(--spacing-md) 0;
+                margin-bottom: var(--spacing-lg);
+            }
+
+            .header-content {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .header h1 {
+                font-size: var(--font-size-xl);
+                line-height: 1.3;
+            }
+
+            .main {
+                padding: var(--spacing-lg) 0;
+            }
+
+            .section-card {
+                padding: var(--spacing-md);
+                border-radius: var(--radius-lg);
+                margin-bottom: var(--spacing-xl);
+            }
+
+            h2 {
+                font-size: var(--font-size-xl);
+                margin-top: var(--spacing-lg);
+                margin-bottom: var(--spacing-md);
+            }
+
+            h3 {
+                font-size: var(--font-size-lg);
+                margin-top: var(--spacing-md);
+            }
+
+            table {
+                min-width: 100%;
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 0.375rem 0.25rem;
+            }
+
+            th {
+                font-size: 0.7rem;
+            }
+
+            td {
+                font-size: 0.7rem;
+            }
+
+            .formula-box {
+                font-size: var(--font-size-sm);
+                padding: var(--spacing-sm);
+                margin-bottom: var(--spacing-lg);
+                word-wrap: break-word;
+            }
+
+            .next-steps {
+                padding: var(--spacing-md);
+                margin-top: var(--spacing-xl);
+            }
+
+            .next-steps h3 {
+                font-size: var(--font-size-lg);
+            }
+
+            .next-steps p {
+                font-size: var(--font-size-sm);
+            }
+
+            .back-btn {
+                font-size: 0.75rem;
+                padding: var(--spacing-xs) var(--spacing-sm);
+                flex-shrink: 0;
+            }
+
+            .btn {
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: var(--font-size-sm);
+            }
+
+            ol, ul {
+                margin-left: var(--spacing-lg);
+            }
+
+            .footer {
+                padding: var(--spacing-lg) 0;
+            }
+
+            .footer p {
+                font-size: 0.75rem;
+                padding: 0 var(--spacing-sm);
+            }
+        }
+
+        /* Dispositivos muito pequenos (até 360px) */
+        @media (max-width: 360px) {
+            .header h1 {
+                font-size: 1.125rem;
+            }
+
+            table {
+                font-size: 0.65rem;
+            }
+
+            th, td {
+                padding: 0.25rem 0.125rem;
+            }
+
+            th, td {
+                font-size: 0.65rem;
+            }
+        }
+
+        /* Landscape em dispositivos móveis */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .header {
+                padding: var(--spacing-sm) 0;
+                margin-bottom: var(--spacing-md);
+            }
+
+            .main {
+                padding: var(--spacing-md) 0;
+            }
+
+            .section-card {
+                margin-bottom: var(--spacing-lg);
+            }
+        }
+    
     </style>
 </head>
 <body>
@@ -260,42 +489,42 @@
 <h3>Questão 1: Relativa Menor</h3>
 <p>Qual é a relativa menor de Sol Maior?</p>
 <ul>
-<li>A) Lá Menor</li>
-<li>B) Mi Menor (Correta)</li>
-<li>C) Dó Menor</li>
-<li>D) Ré Menor</li>
+<li> Lá Menor</li>
+<li> Mi Menor (Correta)</li>
+<li> Dó Menor</li>
+<li> Ré Menor</li>
 </ul>
 <h3>Questão 2: Característica da Menor Harmônica</h3>
 <p>Qual é a principal característica da Escala Menor Harmônica?</p>
 <ul>
-<li>A) O 6º grau é elevado em um semitom.</li>
-<li>B) O 7º grau é elevado em um semitom. (Correta)</li>
-<li>C) O 3º grau é abaixado em um semitom.</li>
-<li>D) É idêntica à Escala Maior.</li>
+<li> O 6º grau é elevado em um semitom.</li>
+<li> O 7º grau é elevado em um semitom. (Correta)</li>
+<li> O 3º grau é abaixado em um semitom.</li>
+<li> É idêntica à Escala Maior.</li>
 </ul>
 <h3>Questão 3: Intervalo Exótico</h3>
 <p>Qual escala menor possui um intervalo de segunda aumentada (um tom e meio) entre o 6º e o 7º grau?</p>
 <ul>
-<li>A) Menor Natural</li>
-<li>B) Menor Melódica (Ascendente)</li>
-<li>C) Menor Harmônica (Correta)</li>
-<li>D) Menor Melódica (Descendente)</li>
+<li> Menor Natural</li>
+<li> Menor Melódica (Ascendente)</li>
+<li> Menor Harmônica (Correta)</li>
+<li> Menor Melódica (Descendente)</li>
 </ul>
 <h3>Questão 4: Escala Melódica Descendente</h3>
 <p>A Escala Menor Melódica em sua forma descendente é idêntica a qual outra escala?</p>
 <ul>
-<li>A) Escala Maior</li>
-<li>B) Escala Menor Harmônica</li>
-<li>C) Escala Menor Natural (Correta)</li>
-<li>D) Escala Pentatônica</li>
+<li> Escala Maior</li>
+<li> Escala Menor Harmônica</li>
+<li> Escala Menor Natural (Correta)</li>
+<li> Escala Pentatônica</li>
 </ul>
 <h3>Questão 5: Fórmula da Menor Natural</h3>
 <p>Qual é a fórmula correta de Tons (T) e Semitons (S) para a Escala Menor Natural?</p>
 <ul>
-<li>A) T - T - S - T - T - T - S</li>
-<li>B) T - S - T - T - S - T - T (Correta)</li>
-<li>C) T - S - T - T - S - 1½ - S</li>
-<li>D) S - T - T - S - T - T - T</li>
+<li> T - T - S - T - T - T - S</li>
+<li> T - S - T - T - S - T - T (Correta)</li>
+<li> T - S - T - T - S - 1½ - S</li>
+<li> S - T - T - S - T - T - T</li>
 </ul>
 <h2>Voltar para a Aula</h2>
 <ul>
