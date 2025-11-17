@@ -1,0 +1,482 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Open Graph Meta Tags -->
+    <meta property="og:url" content="https://brucardosocoder.github.io/teoria_musical">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Teoria Musical">
+    <meta property="og:description" content="Teoria Musical">
+    <meta property="og:image" content="https://brucardosocoder.github.io/teoria_musical/teoria_musicalog.png">    
+    <meta property="og:logo" content="https://brucardosocoder.github.io/teoria_musical/teoria_musicalog.png">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="https://brucardosocoder.github.io/teoria_musical">
+    <meta property="twitter:url" content="https://brucardosocoder.github.io/teoria_musical">
+    <meta name="twitter:title" content="Teoria Musical">
+    <meta name="twitter:description" content="Teoria Musical">
+    <meta name="twitter:image" content="https://brucardosocoder.github.io/luabrilhante/teoria_musical/teoria_musicalog.png">
+    <title>Escalas Maiores e Armadura de Clave</title>
+    <style>
+        :root {
+            /* Cores Tema Escalas */
+            --color-primary: #059669; /* Verde esmeralda */
+            --color-primary-light: #34d399;
+            --color-secondary: #10b981;
+            --color-accent: #f59e0b;
+            --color-background: #f0fdfa;
+            --color-foreground: #064e3b;
+            --color-card: #ffffff;
+            --color-border: #a7f3d0;
+            --color-muted: #ccfbf1;
+            --color-muted-text: #047857;
+            
+            /* Espaçamento */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            
+            /* Tipografia */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --font-size-5xl: 3rem;
+            
+            /* Raio de borda */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+        }
+            
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-background);
+            color: var(--color-foreground);
+            line-height: 1.6;
+            font-size: var(--font-size-base);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--color-background) 0%, var(--color-muted) 100%);
+            border-bottom: 2px solid var(--color-border);
+            padding: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .header h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 auto;
+        }
+        
+        .main {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .section-card {
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-3xl);
+        }
+        
+        h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: var(--spacing-sm);
+        }
+        
+        h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-secondary);
+        }
+        
+        p {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        th, td {
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--color-muted);
+            font-weight: 700;
+            color: var(--color-foreground);
+        }
+        
+        td {
+            background-color: var(--color-card);
+        }
+        
+        .formula-box {
+            background-color: var(--color-muted);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--color-primary-light);
+            text-align: center;
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-xl);
+            color: var(--color-primary);
+        }
+        
+        .summary-table {
+            margin-top: var(--spacing-xl);
+        }
+        
+        .next-steps {
+            background-color: var(--color-muted);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-3xl);
+        }
+        
+        .next-steps h3 {
+            color: var(--color-foreground);
+            margin-top: 0;
+        }
+        
+        .next-steps p {
+            font-size: var(--font-size-lg);
+            color: var(--color-muted-text);
+        }
+        
+        .highlight {
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        
+        .footer {
+            border-top: 1px solid var(--color-border);
+            background-color: var(--color-muted);
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-3xl);
+        }
+        
+        .footer p {
+            text-align: center;
+            font-size: var(--font-size-sm);
+            color: var(--color-muted-text);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-xl);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease-out;
+            width: 100%;
+            justify-content: center;
+            text-decoration: none;
+            background-color: var(--color-primary);
+            color: white;
+        }
+        
+        .btn:hover {
+            background-color: var(--color-primary-light);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .back-btn {
+            background-color: var(--color-secondary);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+        
+        .back-btn:hover {
+            background-color: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+    <div class='header'>
+        <div class='container'>
+            <div class='header-content'>
+            <a href="index.html" class="back-btn">← Início</a>
+      <h1>Escalas Maiores e Armadura de Clave</h1>
+        </div>
+    </div>
+    </div>
+    <div class='main'>
+        <div class='container'>
+            <div class='section-card'>
+
+<h2>A Fórmula Mágica da Escala Maior</h2>
+<p>Na aula de Tom e Semitom, aprendemos que a Escala Maior é construída a partir de uma sequência específica de Tons (T) e Semitons (S). Esta sequência é a <strong>fórmula universal</strong> para todas as escalas maiores.</p>
+<div class='formula-box'>Fórmula da Escala Maior: T - T - S - T - T - T - S</div>
+<ul>
+<li><strong>Tônica (1º grau):</strong> Ponto de partida da escala.</li>
+<li><strong>2º grau:</strong> Um Tom acima da Tônica.</li>
+<li><strong>3º grau:</strong> Um Tom acima do 2º grau.</li>
+<li><strong>4º grau:</strong> Um Semitom acima do 3º grau.</li>
+<li><strong>5º grau:</strong> Um Tom acima do 4º grau.</li>
+<li><strong>6º grau:</strong> Um Tom acima do 5º grau.</li>
+<li><strong>7º grau:</strong> Um Tom acima do 6º grau.</li>
+<li><strong>Oitava (8º grau):</strong> Um Semitom acima do 7º grau, repetindo a Tônica.</li>
+</ul>
+<h2>Construindo as Escalas Maiores</h2>
+<p>Ao aplicar a fórmula T-T-S-T-T-T-S a partir de qualquer uma das 12 notas musicais, obtemos as 12 Escalas Maiores.</p>
+<h3>Exemplo: Escala de Dó Maior (C Major)</h3>
+<p>A Escala de Dó Maior é a mais simples, pois não utiliza acidentes (sustenidos ou bemóis).</p>
+<table class='summary-table'>
+<thead>
+<tr>
+<th style="text-align: center;">Grau</th>
+<th style="text-align: center;">Nota</th>
+<th style="text-align: center;">Distância da Anterior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1º</td>
+<td style="text-align: center;">Dó</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">2º</td>
+<td style="text-align: center;">Ré</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">3º</td>
+<td style="text-align: center;">Mi</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">4º</td>
+<td style="text-align: center;">Fá</td>
+<td style="text-align: center;">Semitom</td>
+</tr>
+<tr>
+<td style="text-align: center;">5º</td>
+<td style="text-align: center;">Sol</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">6º</td>
+<td style="text-align: center;">Lá</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">7º</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">8º</td>
+<td style="text-align: center;">Dó</td>
+<td style="text-align: center;">Semitom</td>
+</tr>
+</tbody>
+</table>
+<h3>Exemplo: Escala de Sol Maior (G Major)</h3>
+<p>Para manter a fórmula T-T-S-T-T-T-S, precisamos de um sustenido (Fá#).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Grau</th>
+<th style="text-align: center;">Nota</th>
+<th style="text-align: center;">Distância da Anterior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1º</td>
+<td style="text-align: center;">Sol</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">2º</td>
+<td style="text-align: center;">Lá</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">3º</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">4º</td>
+<td style="text-align: center;">Dó</td>
+<td style="text-align: center;">Semitom</td>
+</tr>
+<tr>
+<td style="text-align: center;">5º</td>
+<td style="text-align: center;">Ré</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">6º</td>
+<td style="text-align: center;">Mi</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">7º</td>
+<td style="text-align: center;">Fá#</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">8º</td>
+<td style="text-align: center;">Sol</td>
+<td style="text-align: center;">Semitom</td>
+</tr>
+</tbody>
+</table>
+<h2>O Círculo de Quintas</h2>
+<p>O Círculo de Quintas é uma ferramenta fundamental que organiza as 12 tonalidades de forma visual, mostrando a relação entre elas e a quantidade de acidentes (sustenidos ou bemóis) em suas respectivas Armaduras de Clave.</p>
+<ul>
+<li><strong>Sentido Horário (Sustenidos):</strong> A cada passo, subimos uma Quinta Justa e adicionamos um sustenido.</li>
+<li><strong>Sentido Anti-Horário (Bemóis):</strong> A cada passo, subimos uma Quarta Justa (ou descemos uma Quinta Justa) e adicionamos um bemol.</li>
+</ul>
+<h3>Ordem dos Acidentes</h3>
+<p>A ordem em que os sustenidos e bemóis aparecem nas armaduras de clave é sempre a mesma:</p>
+<ul>
+<li><strong>Ordem dos Sustenidos (#):</strong> Fá - Dó - Sol - Ré - Lá - Mi - Si</li>
+<li><strong>Ordem dos Bemóis (b):</strong> Si - Mi - Lá - Ré - Sol - Dó - Fá (Inverso dos Sustenidos)</li>
+</ul>
+<h2>Armadura de Clave</h2>
+<p>A Armadura de Clave é o conjunto de sustenidos ou bemóis colocado no início da pauta, logo após a clave. Ela indica quais notas devem ser alteradas em toda a música, definindo a tonalidade.</p>
+<h3>Regras Práticas para Identificação</h3>
+<ol>
+<li><strong>Para Sustenidos (#):</strong> A tonalidade é a nota que está um semitom acima do <strong>último sustenido</strong> da armadura.<ul>
+<li><em>Exemplo:</em> Se o último sustenido é Dó#, a tonalidade é Ré Maior.</li>
+</ul>
+</li>
+<li><strong>Para Bemóis (b):</strong> A tonalidade é a nota que corresponde ao <strong>penúltimo bemol</strong> da armadura.<ul>
+<li><em>Exemplo:</em> Se a armadura tem Si♭, Mi♭, Lá♭, a tonalidade é Mi♭ Maior (o penúltimo bemol).</li>
+</ul>
+</li>
+</ol>
+<h2>Resumo - Pontos Principais</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Conceito</th>
+<th style="text-align: left;">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Fórmula</strong></td>
+<td style="text-align: left;">T - T - S - T - T - T - S (Tom, Tom, Semitom, Tom, Tom, Tom, Semitom)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Escala Maior</strong></td>
+<td style="text-align: left;">Sequência de 8 notas que segue a fórmula, começando de qualquer nota.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Armadura de Clave</strong></td>
+<td style="text-align: left;">Símbolos (# ou b) no início da pauta que indicam a tonalidade.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Círculo de Quintas</strong></td>
+<td style="text-align: left;">Organiza as 12 tonalidades e suas armaduras de clave.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ordem dos #</strong></td>
+<td style="text-align: left;">Fá - Dó - Sol - Ré - Lá - Mi - Si</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ordem dos b</strong></td>
+<td style="text-align: left;">Si - Mi - Lá - Ré - Sol - Dó - Fá</td>
+</tr>
+</tbody>
+</table>
+
+    <a href="exercicio_escalas.html" class="btn" style="margin-top: var(--spacing-3xl);">Praticar: Exercício de Escalas e Armadura de Clave</a>
+
+    <div class='next-steps'>
+        <h3>Próximos Passos</h3>
+        <p>Com o domínio das Escalas Maiores e da Armadura de Clave, você está pronto para explorar as <span class='highlight'>Escalas Menores</span> e, em seguida, a <span class='highlight'>Formação de Acordes</span> (Tríades).</p>
+        <p><strong>Próxima Aula:</strong> Escalas Menores (Natural, Harmônica e Melódica).</p>
+        <p><strong>Conceito Chave:</strong> A Escala Menor Relativa.</p>
+    </div>
+    
+            </div>
+        </div>
+    </div>
+    <div class='footer'>
+        <div class='container'>
+            <p>&copy; 2025 Teoria Musical Espresso. Todos os direitos reservados. Desenvolvido por <a href="https://wa.me/5521989978029" target="_blank" class="underline">Bru Cardoso Coder.</a></p>
+        </div>
+    </div>
+</body>
+</html>

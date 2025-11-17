@@ -1,0 +1,512 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Open Graph Meta Tags -->
+    <meta property="og:url" content="https://brucardosocoder.github.io/teoria_musical">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Teoria Musical">
+    <meta property="og:description" content="Teoria Musical">
+    <meta property="og:image" content="https://brucardosocoder.github.io/teoria_musical/teoria_musicalog.png">    
+    <meta property="og:logo" content="https://brucardosocoder.github.io/teoria_musical/teoria_musicalog.png">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="https://brucardosocoder.github.io/teoria_musical">
+    <meta property="twitter:url" content="https://brucardosocoder.github.io/teoria_musical">
+    <meta name="twitter:title" content="Teoria Musical">
+    <meta name="twitter:description" content="Teoria Musical">
+    <meta name="twitter:image" content="https://brucardosocoder.github.io/luabrilhante/teoria_musical/teoria_musicalog.png">
+    <title>Escalas Menores (Natural, Harmônica e Melódica)</title>
+    <style>
+        :root {
+            /* Cores Tema Escalas Menores (Roxo/Azul) */
+            --color-primary: #7c3aed; /* Roxo */
+            --color-primary-light: #a78bfa;
+            --color-secondary: #4f46e5; /* Índigo */
+            --color-accent: #f59e0b;
+            --color-background: #f5f3ff;
+            --color-foreground: #3730a3;
+            --color-card: #ffffff;
+            --color-border: #c4b5fd;
+            --color-muted: #ede9fe;
+            --color-muted-text: #6d28d9;
+            
+            /* Espaçamento */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            
+            /* Tipografia */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --font-size-5xl: 3rem;
+            
+            /* Raio de borda */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-background);
+            color: var(--color-foreground);
+            line-height: 1.6;
+            font-size: var(--font-size-base);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--color-background) 0%, var(--color-muted) 100%);
+            border-bottom: 2px solid var(--color-border);
+            padding: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .header h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 auto;
+        }
+        
+        .main {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .section-card {
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-3xl);
+        }
+        
+        h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: var(--spacing-sm);
+        }
+        
+        h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-secondary);
+        }
+        
+        p {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        th, td {
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--color-muted);
+            font-weight: 700;
+            color: var(--color-foreground);
+        }
+        
+        td {
+            background-color: var(--color-card);
+        }
+        
+        .formula-box {
+            background-color: var(--color-muted);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--color-primary-light);
+            text-align: center;
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-xl);
+            color: var(--color-primary);
+        }
+        
+        .next-steps {
+            background-color: var(--color-muted);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-3xl);
+        }
+        
+        .next-steps h3 {
+            color: var(--color-foreground);
+            margin-top: 0;
+        }
+        
+        .next-steps p {
+            font-size: var(--font-size-lg);
+            color: var(--color-muted-text);
+        }
+        
+        .highlight {
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        
+        .footer {
+            border-top: 1px solid var(--color-border);
+            background-color: var(--color-muted);
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-3xl);
+        }
+        
+        .footer p {
+            text-align: center;
+            font-size: var(--font-size-sm);
+            color: var(--color-muted-text);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-xl);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease-out;
+            width: 100%;
+            justify-content: center;
+            text-decoration: none;
+            background-color: var(--color-primary);
+            color: white;
+        }
+        
+        .btn:hover {
+            background-color: var(--color-primary-light);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .back-btn {
+            background-color: var(--color-secondary);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+        
+        .back-btn:hover {
+            background-color: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+    <div class='header'>
+        <div class='container'>
+            <div class='header-content'>
+            <a href="index.html" class="back-btn">← Início</a>
+            <h1>Escalas Menores (Natural, Harmônica e Melódica)</h1>
+        </div>
+        </div>
+    </div>
+    <div class='main'>
+        <div class='container'>
+            <div class='section-card'>
+
+<h2>A Escala Menor Natural e a Relatividade</h2>
+<p>A Escala Menor Natural é a base para todas as escalas menores. Ela compartilha a mesma Armadura de Clave de uma Escala Maior, sendo por isso chamada de sua <strong>relativa menor</strong>.</p>
+<p><strong>Regra da Relativa Menor:</strong> A tônica da Escala Menor Natural está sempre localizada na <strong>sexta nota</strong> da Escala Maior, ou uma <strong>terça menor abaixo</strong> da tônica da Escala Maior.</p>
+<ul>
+<li><strong>Exemplo:</strong> A Escala de Dó Maior (C-D-E-F-G-A-B-C) tem como sexta nota o Lá. Portanto, <strong>Lá Menor</strong> é a relativa menor de Dó Maior.</li>
+</ul>
+<h3>Fórmula da Escala Menor Natural</h3>
+<p>A Escala Menor Natural possui uma fórmula de Tons (T) e Semitons (S) diferente da Escala Maior:</p>
+<div class='formula-box'>Fórmula da Escala Menor Natural: T - S - T - T - S - T - T</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Grau</th>
+<th style="text-align: center;">Nota (Lá Menor)</th>
+<th style="text-align: center;">Distância da Anterior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1º</td>
+<td style="text-align: center;">Lá</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">2º</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">3º</td>
+<td style="text-align: center;">Dó</td>
+<td style="text-align: center;">Semitom</td>
+</tr>
+<tr>
+<td style="text-align: center;">4º</td>
+<td style="text-align: center;">Ré</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">5º</td>
+<td style="text-align: center;">Mi</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">6º</td>
+<td style="text-align: center;">Fá</td>
+<td style="text-align: center;">Semitom</td>
+</tr>
+<tr>
+<td style="text-align: center;">7º</td>
+<td style="text-align: center;">Sol</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">8º</td>
+<td style="text-align: center;">Lá</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+</tbody>
+</table>
+<h2>Tipos de Escalas Menores</h2>
+<p>A Escala Menor Natural, embora fundamental, não possui o semitom característico entre o 7º e o 8º grau, que é crucial para criar a tensão harmônica necessária para o acorde de Dominante. Por isso, foram criadas duas variações: a Harmônica e a Melódica.</p>
+<h3>1. Escala Menor Harmônica</h3>
+<p>A Escala Menor Harmônica é criada elevando-se o <strong>sétimo grau</strong> da Escala Menor Natural em um semitom.</p>
+<ul>
+<li><strong>Objetivo:</strong> Criar o semitom entre o 7º e o 8º grau, o que torna o acorde de Dominante (V) maior, gerando uma forte atração para a Tônica (I).</li>
+<li><strong>Característica:</strong> Possui um intervalo de <strong>segunda aumentada</strong> (um tom e meio) entre o 6º e o 7º grau, o que lhe confere um som exótico ou "oriental".</li>
+</ul>
+<p><strong>Fórmula da Escala Menor Harmônica:</strong> T - S - T - T - S - <strong>1½</strong> - S</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Grau</th>
+<th style="text-align: center;">Nota (Lá Menor)</th>
+<th style="text-align: center;">Distância da Anterior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1º</td>
+<td style="text-align: center;">Lá</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">2º</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">3º</td>
+<td style="text-align: center;">Dó</td>
+<td style="text-align: center;">Semitom</td>
+</tr>
+<tr>
+<td style="text-align: center;">4º</td>
+<td style="text-align: center;">Ré</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">5º</td>
+<td style="text-align: center;">Mi</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">6º</td>
+<td style="text-align: center;">Fá</td>
+<td style="text-align: center;">Semitom</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>7º</strong></td>
+<td style="text-align: center;"><strong>Sol#</strong></td>
+<td style="text-align: center;"><strong>Tom e Meio (1½)</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">8º</td>
+<td style="text-align: center;">Lá</td>
+<td style="text-align: center;">Semitom</td>
+</tr>
+</tbody>
+</table>
+<h3>2. Escala Menor Melódica</h3>
+<p>A Escala Menor Melódica foi criada para suavizar o som da segunda aumentada da Escala Menor Harmônica, sendo usada principalmente em melodias.</p>
+<ul>
+<li><strong>Ascendente:</strong> Eleva-se o <strong>sexto e o sétimo grau</strong> em um semitom.</li>
+<li><strong>Descendente:</strong> Volta a ser idêntica à <strong>Escala Menor Natural</strong>.</li>
+</ul>
+<div class='formula-box'>Fórmula da Escala Menor Melódica (Ascendente): T - S - T - T - T - T - S</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Grau</th>
+<th style="text-align: center;">Nota (Lá Menor)</th>
+<th style="text-align: center;">Distância da Anterior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1º</td>
+<td style="text-align: center;">Lá</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">2º</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">3º</td>
+<td style="text-align: center;">Dó</td>
+<td style="text-align: center;">Semitom</td>
+</tr>
+<tr>
+<td style="text-align: center;">4º</td>
+<td style="text-align: center;">Ré</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;">5º</td>
+<td style="text-align: center;">Mi</td>
+<td style="text-align: center;">Tom</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>6º</strong></td>
+<td style="text-align: center;"><strong>Fá#</strong></td>
+<td style="text-align: center;"><strong>Tom</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>7º</strong></td>
+<td style="text-align: center;"><strong>Sol#</strong></td>
+<td style="text-align: center;"><strong>Tom</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">8º</td>
+<td style="text-align: center;">Lá</td>
+<td style="text-align: center;">Semitom</td>
+</tr>
+</tbody>
+</table>
+<h2>Resumo - Tipos de Escalas Menores</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Escala</th>
+<th style="text-align: center;">Fórmula (T-S)</th>
+<th style="text-align: center;">Graus Alterados (em relação à Natural)</th>
+<th style="text-align: center;">Uso Principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Natural</strong></td>
+<td style="text-align: center;">T - S - T - T - S - T - T</td>
+<td style="text-align: center;">Nenhum</td>
+<td style="text-align: center;">Melodias e acordes básicos</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Harmônica</strong></td>
+<td style="text-align: center;">T - S - T - T - S - 1½ - S</td>
+<td style="text-align: center;">7º grau elevado</td>
+<td style="text-align: center;">Harmonia (Dominante Maior)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Melódica (Asc.)</strong></td>
+<td style="text-align: center;">T - S - T - T - T - T - S</td>
+<td style="text-align: center;">6º e 7º graus elevados</td>
+<td style="text-align: center;">Melodias ascendentes</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Melódica (Desc.)</strong></td>
+<td style="text-align: center;">T - S - T - T - S - T - T</td>
+<td style="text-align: center;">Nenhum (igual à Natural)</td>
+<td style="text-align: center;">Melodias descendentes</td>
+</tr>
+</tbody>
+</table>
+
+    <a href="exercicio_escalas_menores.html" class="btn" style="margin-top: var(--spacing-3xl);">Praticar: Exercício de Escalas Menores</a>
+
+    <div class='next-steps'>
+        <h3>Próximos Passos</h3>
+        <p>Com o domínio das Escalas Maiores e Menores, você está pronto para o próximo passo fundamental: a construção dos acordes.</p>
+        <p><strong>Próxima Aula:</strong> Tríades (Formação de Acordes).</p>
+        <p><strong>Conceito Chave:</strong> A sobreposição de intervalos de terça.</p>
+    </div>
+    
+            </div>
+        </div>
+    </div>
+    <div class='footer'>
+        <div class='container'>
+            <p>&copy; 2025 Teoria Musical Espresso. Todos os direitos reservados. Desenvolvido por <a href="https://wa.me/5521989978029" target="_blank" class="underline">Bru Cardoso Coder.</a></p>
+        </div>
+    </div>
+</body>
+</html>
