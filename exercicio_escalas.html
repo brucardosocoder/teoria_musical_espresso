@@ -21,7 +21,6 @@
     <title>Exercício Interativo: Escalas Maiores e Armadura de Clave | Teoria Musical Espresso Espresso</title>
     <style>
         :root {
-            /* Cores Tema Escalas */
             --color-primary: #4d3021;
     --color-primary-light: #3a2a19;
     --color-secondary: #7a5948;
@@ -32,8 +31,7 @@
     --color-border: #3a2a19;
     --color-muted: #fffaf3;
     --color-muted-text: #1d1d22;
-            
-            /* Espaçamento */
+   
             --spacing-xs: 0.25rem;
             --spacing-sm: 0.5rem;
             --spacing-md: 1rem;
@@ -41,8 +39,7 @@
             --spacing-xl: 2rem;
             --spacing-2xl: 3rem;
             --spacing-3xl: 4rem;
-            
-            /* Tipografia */
+
             --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             --font-size-sm: 0.875rem;
             --font-size-base: 1rem;
@@ -52,14 +49,12 @@
             --font-size-3xl: 2rem;
             --font-size-4xl: 2.5rem;
             --font-size-5xl: 3rem;
-            
-            /* Raio de borda */
+  
             --radius-sm: 0.375rem;
             --radius-md: 0.5rem;
             --radius-lg: 0.75rem;
             --radius-xl: 1rem;
-            
-            /* Sombras */
+
             --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
@@ -176,7 +171,6 @@
             color: var(--color-muted-text);
         }
         
-        /* Estilos do Exercício Interativo */
         .question-block {
             margin-bottom: var(--spacing-2xl);
             padding: var(--spacing-lg);
@@ -191,7 +185,7 @@
         }
         
         .option {
-            display: flex; /* Garante que o feedback fique ao lado */
+            display: flex;
             align-items: center;
             padding: var(--spacing-md);
             margin-bottom: var(--spacing-sm);
@@ -203,19 +197,19 @@
         }
         
         .option:hover:not(.disabled) {
-            background-color: #e0f2f1; /* Um verde claro mais suave */
+            background-color: #e0f2f1;
         }
         
         .option.correct {
-            background-color: #d1fae5 !important; /* Verde bem claro */
-            border-color: #10b981 !important; /* Verde forte */
+            background-color: #d1fae5 !important;
+            border-color: #10b981 !important;
             color: #065f46;
             font-weight: 600;
         }
         
         .option.incorrect {
-            background-color: #fee2e2 !important; /* Vermelho bem claro */
-            border-color: #ef4444 !important; /* Vermelho forte */
+            background-color: #fee2e2 !important;
+            border-color: #ef4444 !important;
             color: #991b1b;
             font-weight: 600;
         }
@@ -229,7 +223,7 @@
             margin-left: auto;
             font-weight: 700;
             padding-left: var(--spacing-md);
-            flex-shrink: 0; /* Impede que o feedback encolha */
+            flex-shrink: 0;
         }
         
         .feedback.correct-text {
@@ -253,7 +247,6 @@
             margin-bottom: var(--spacing-sm);
         }
 
-        /* Tabelas Responsivas */
         .table-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -261,9 +254,6 @@
             margin-bottom: var(--spacing-lg);
         }
 
-        /* Media Queries para Responsividade */
-        
-        /* Tablets e dispositivos médios (até 768px) */
         @media (max-width: 768px) {
             :root {
                 --font-size-3xl: 1.5rem;
@@ -318,7 +308,6 @@
             }
         }
 
-        /* Smartphones (até 480px) */
         @media (max-width: 480px) {
             :root {
                 --font-size-3xl: 1.25rem;
@@ -437,7 +426,6 @@
             }
         }
 
-        /* Dispositivos muito pequenos (até 360px) */
         @media (max-width: 360px) {
             .header h1 {
                 font-size: 1.125rem;
@@ -456,7 +444,6 @@
             }
         }
 
-        /* Landscape em dispositivos móveis */
         @media (max-height: 500px) and (orientation: landscape) {
             .header {
                 padding: var(--spacing-sm) 0;
@@ -552,13 +539,11 @@
             const options = questionBlock.querySelectorAll('.option');
             const correctAnswer = correctAnswers[questionId];
 
-            // Desabilita todos os botões de opção para esta questão
             options.forEach(option => {
                 option.classList.add('disabled');
-                option.onclick = null; // Remove o evento de clique
+                option.onclick = null;
             });
 
-            // Encontra a opção selecionada
             const selectedElement = questionBlock.querySelector(`[data-option='${selectedOption}']`);
             const feedbackElement = document.createElement('span');
             feedbackElement.classList.add('feedback');
@@ -573,12 +558,10 @@
                 feedbackElement.textContent = 'Resposta incorreta!';
                 feedbackElement.classList.add('incorrect-text');
                 selectedElement.appendChild(feedbackElement);
-                
-                // Destacar a resposta correta
+
                 const correctElement = questionBlock.querySelector(`[data-option='${correctAnswer}']`);
                 correctElement.classList.add('correct');
-                
-                // Adicionar feedback textual à resposta correta
+
                 const correctFeedbackElement = document.createElement('span');
                 correctFeedbackElement.classList.add('feedback', 'correct-text');
                 correctFeedbackElement.textContent = 'Resposta correta!';
@@ -586,16 +569,12 @@
             }
         }
 
-        // Função para montar o bloco de questões a partir do HTML gerado pelo Markdown
         function setupQuestions() {
             const contentDiv = document.querySelector('.section-card');
             let html = contentDiv.innerHTML;
-            
-            // Remove o título H1 do Markdown
+
             html = html.replace(/<h1>.*?<\/h1>/, '');
-            
-            // Regex para encontrar blocos de Questão e Opções
-            // O Markdown gera: <h3>Questão...</h3><p>Texto...</p><ul><li>Opção A</li><li>Opção B (Correta)</li>...</ul>
+
             const questionRegex = /<h3>(Questão \d+:\s*.*?)\s*<\/h3>\s*<p>(.*?)<\/p>\s*<ul>(.*?)<\/ul>/gs;
             
             let questionCount = 0;
@@ -603,22 +582,18 @@
             const newHtml = html.replace(questionRegex, (match, questionTitle, questionText, optionsHtml) => {
                 questionCount++;
                 const questionId = 'q' + questionCount;
-                
-                // Processa as opções
-                // Regex para encontrar <li>(.*?)\s*(\(Correta\))?<\/li>
+
                 const optionRegex = /<li>(.*?)\s*(\(Correta\))?<\/li>/g;
                 let optionLetter = 'A';
                 
                 let optionsHtmlOutput = '';
-                
-                // Itera sobre as opções do Markdown
+
                 let matchOption;
-                // Reinicia o regex para o loop while
+
                 optionRegex.lastIndex = 0; 
                 while ((matchOption = optionRegex.exec(optionsHtml)) !== null) {
                     const optionText = matchOption[1].trim();
-                    
-                    // Gera o HTML da opção
+
                     optionsHtmlOutput += `
                         <div class="option" data-option="${optionLetter}" onclick="checkAnswer('${questionId}', '${optionLetter}')">
                             <strong>${optionLetter})</strong> ${optionText}
@@ -626,8 +601,7 @@
                     `;
                     optionLetter = String.fromCharCode(optionLetter.charCodeAt(0) + 1);
                 }
-                
-                // Retorna o bloco de questão formatado
+
                 return `
                     <div class="question-block" id="${questionId}">
                         <h3>${questionTitle}</h3>
@@ -636,11 +610,10 @@
                     </div>
                 `;
             });
-            
-            // Remove a seção de Voltar para a Aula do Markdown original
+
             const finalHtml = newHtml.replace(/<h2>Voltar para a Aula<\/h2>.*$/, '');
             
-            // Adiciona o botão de volta para a aula
+
             const backToLessonHtml = `
                 <div class="back-to-lesson">
                     <a href="escalasmaiores.html" class="btn">← Voltar para a Aula</a>
