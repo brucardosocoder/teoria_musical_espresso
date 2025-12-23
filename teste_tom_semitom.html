@@ -358,6 +358,8 @@
             flex-direction: column;
             gap: 16px;
             margin-bottom: 30px;
+            max-height: 500px;
+            overflow-y: auto;
         }
 
         .result-item {
@@ -503,7 +505,7 @@
 
                 <div class="info-box">
                     <strong>Informações:</strong>
-                    Este teste contém 5 perguntas sobre tom e semitom. Você terá a oportunidade de revisar suas respostas antes de enviar.
+                    Este teste contém 30 perguntas sobre tom e semitom. Você terá a oportunidade de revisar suas respostas antes de enviar.
                 </div>
             </div>
         </div>
@@ -513,11 +515,11 @@
             <div class="card">
                 <div class="question-header">
                     <h1>Teste de Tom e Semitom</h1>
-                    <span class="question-number" id="questionCounter">1/5</span>
+                    <span class="question-number" id="questionCounter">1/30</span>
                 </div>
 
                 <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+                    <div class="progress-fill" id="progressFill" style="width: 3.33%"></div>
                 </div>
 
                 <div class="question-text" id="questionText"></div>
@@ -554,7 +556,7 @@
                     </div>
 
                     <p class="score-text">
-                        <span id="scoreText">0 de 5 acertos</span>
+                        <span id="scoreText">0 de 30 acertos</span>
                     </p>
 
                     <p class="message" id="resultMessage"></p>
@@ -575,7 +577,17 @@
     </div>
 
     <script>
-        // DADOS DAS PERGUNTAS
+        // FUNÇÃO PARA EMBARALHAR ARRAY
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // DADOS DAS PERGUNTAS (30 QUESTÕES)
         const questions = [
             {
                 id: 1,
@@ -611,7 +623,7 @@
                     "S-T-S-T-S-T-S"
                 ],
                 correctAnswer: 1,
-                explanation: "A fórmula da Escala Maior é T-T-S-T-T-T-S (Tom-Tom-Semitom-Tom-Tom-Tom-Semitom). Esta sequência é a 'receita' para construir qualquer escala maior, começando de qualquer nota."
+                explanation: "A fórmula da Escala Maior é T-T-S-T-T-T-S (Tom-Tom-Semitom-Tom-Tom-Tom-Semitom). Esta sequência é a 'receita' para construir qualquer escala maior."
             },
             {
                 id: 4,
@@ -623,7 +635,7 @@
                     "Entre o 4º e 5º graus e entre o 8º e 9º graus"
                 ],
                 correctAnswer: 2,
-                explanation: "Os semitons na Escala Maior ocorrem entre o 3º e 4º graus (Mi-Fá) e entre o 7º e 8º graus (Si-Dó). Esta é uma característica fundamental da Escala Maior."
+                explanation: "Os semitons na Escala Maior ocorrem entre o 3º e 4º graus (Mi-Fá) e entre o 7º e 8º graus (Si-Dó). Esta é uma característica fundamental."
             },
             {
                 id: 5,
@@ -636,6 +648,306 @@
                 ],
                 correctAnswer: 1,
                 explanation: "A distância de Dó para Ré é de 2 semitons, ou seja, 1 tom inteiro. O caminho é: Dó → Dó# → Ré."
+            },
+            {
+                id: 6,
+                question: "Quantos semitons tem uma oitava completa?",
+                options: [
+                    "8 semitons",
+                    "10 semitons",
+                    "12 semitons",
+                    "14 semitons"
+                ],
+                correctAnswer: 2,
+                explanation: "Uma oitava completa contém 12 semitons. Isso inclui todas as notas naturais e acidentes (sustenidos e bemóis) dentro de uma oitava."
+            },
+            {
+                id: 7,
+                question: "Qual intervalo é formado por 5 semitons?",
+                options: [
+                    "Terça Menor",
+                    "Quarta Justa",
+                    "Quinta Diminuta",
+                    "Sexta Maior"
+                ],
+                correctAnswer: 1,
+                explanation: "5 semitons formam uma Quarta Justa. Este é um intervalo consonante perfeito muito importante na música."
+            },
+            {
+                id: 8,
+                question: "Qual é a distância em semitons de Dó para Fá?",
+                options: [
+                    "3 semitons",
+                    "4 semitons",
+                    "5 semitons",
+                    "6 semitons"
+                ],
+                correctAnswer: 2,
+                explanation: "A distância de Dó para Fá é de 5 semitons. O caminho é: Dó → Dó# → Ré → Ré# → Mi → Fá."
+            },
+            {
+                id: 9,
+                question: "Qual é a distância em semitons de Mi para Si?",
+                options: [
+                    "5 semitons",
+                    "6 semitons",
+                    "7 semitons",
+                    "8 semitons"
+                ],
+                correctAnswer: 2,
+                explanation: "A distância de Mi para Si é de 7 semitons. O caminho é: Mi → Fá → Fá# → Sol → Sol# → Lá → Lá# → Si."
+            },
+            {
+                id: 10,
+                question: "Qual nota está a 2 semitons acima de Ré?",
+                options: [
+                    "Mi",
+                    "Fá",
+                    "Mi#",
+                    "Ré#"
+                ],
+                correctAnswer: 0,
+                explanation: "2 semitons acima de Ré é Mi. O caminho é: Ré → Ré# → Mi."
+            },
+            {
+                id: 11,
+                question: "Qual nota está a 1 semitom abaixo de Lá?",
+                options: [
+                    "Sol#",
+                    "Sol",
+                    "Lá#",
+                    "Si"
+                ],
+                correctAnswer: 0,
+                explanation: "1 semitom abaixo de Lá é Sol#. Este é um semitom cromático."
+            },
+            {
+                id: 12,
+                question: "Quantos tons tem a Escala Maior?",
+                options: [
+                    "4 tons",
+                    "5 tons",
+                    "6 tons",
+                    "7 tons"
+                ],
+                correctAnswer: 1,
+                explanation: "A Escala Maior tem 5 tons e 2 semitons. A fórmula T-T-S-T-T-T-S confirma isso."
+            },
+            {
+                id: 13,
+                question: "Qual é a distância em semitons de Dó para Sol?",
+                options: [
+                    "5 semitons",
+                    "6 semitons",
+                    "7 semitons",
+                    "8 semitons"
+                ],
+                correctAnswer: 2,
+                explanation: "A distância de Dó para Sol é de 7 semitons, formando uma Quinta Justa."
+            },
+            {
+                id: 14,
+                question: "O semitom cromático é aquele que:",
+                options: [
+                    "Muda o nome da nota",
+                    "Mantém o nome da nota",
+                    "Cria uma nova escala",
+                    "Dobra a frequência"
+                ],
+                correctAnswer: 1,
+                explanation: "O semitom cromático mantém o nome da nota, apenas alterando sua altura com um acidente (# ou b). Exemplo: Dó para Dó#."
+            },
+            {
+                id: 15,
+                question: "O semitom diatônico é aquele que:",
+                options: [
+                    "Mantém o nome da nota",
+                    "Muda o nome da nota",
+                    "Não afeta a escala",
+                    "Cria um intervalo perfeito"
+                ],
+                correctAnswer: 1,
+                explanation: "O semitom diatônico muda o nome da nota. Exemplo: Mi para Fá ou Si para Dó."
+            },
+            {
+                id: 16,
+                question: "Qual intervalo é formado por 4 semitons?",
+                options: [
+                    "Terça Maior",
+                    "Terça Menor",
+                    "Quarta Justa",
+                    "Segunda Maior"
+                ],
+                correctAnswer: 0,
+                explanation: "4 semitons formam uma Terça Maior. Este é um intervalo consonante muito comum em acordes maiores."
+            },
+            {
+                id: 17,
+                question: "Qual intervalo é formado por 3 semitons?",
+                options: [
+                    "Terça Maior",
+                    "Terça Menor",
+                    "Segunda Aumentada",
+                    "Quarta Diminuta"
+                ],
+                correctAnswer: 1,
+                explanation: "3 semitons formam uma Terça Menor. Este intervalo é fundamental em acordes menores."
+            },
+            {
+                id: 18,
+                question: "Qual é a distância em semitons de Fá para Si?",
+                options: [
+                    "5 semitons",
+                    "6 semitons",
+                    "7 semitons",
+                    "8 semitons"
+                ],
+                correctAnswer: 1,
+                explanation: "A distância de Fá para Si é de 6 semitons, formando uma Quinta Aumentada ou Sexta Diminuta."
+            },
+            {
+                id: 19,
+                question: "Qual nota está a 3 semitons acima de Dó?",
+                options: [
+                    "Ré",
+                    "Mi",
+                    "Mi#",
+                    "Ré#"
+                ],
+                correctAnswer: 3,
+                explanation: "3 semitons acima de Dó é Ré#. O caminho é: Dó → Dó# → Ré → Ré#."
+            },
+            {
+                id: 20,
+                question: "Qual nota está a 7 semitons acima de Dó?",
+                options: [
+                    "Sol",
+                    "Sol#",
+                    "Lá",
+                    "Lá#"
+                ],
+                correctAnswer: 0,
+                explanation: "7 semitons acima de Dó é Sol. Esta é a Quinta Justa, um intervalo consonante perfeito."
+            },
+            {
+                id: 21,
+                question: "Qual é a distância em semitons de Lá para Dó?",
+                options: [
+                    "2 semitons",
+                    "3 semitons",
+                    "4 semitons",
+                    "5 semitons"
+                ],
+                correctAnswer: 1,
+                explanation: "A distância de Lá para Dó é de 3 semitons. O caminho é: Lá → Lá# → Si → Dó."
+            },
+            {
+                id: 22,
+                question: "Qual intervalo é formado por 2 semitons?",
+                options: [
+                    "Segunda Menor",
+                    "Segunda Maior",
+                    "Terça Menor",
+                    "Semitom"
+                ],
+                correctAnswer: 1,
+                explanation: "2 semitons formam uma Segunda Maior (também chamada de tom inteiro). Este é um intervalo muito comum em escalas maiores."
+            },
+            {
+                id: 23,
+                question: "Qual intervalo é formado por 1 semitom?",
+                options: [
+                    "Segunda Aumentada",
+                    "Segunda Menor",
+                    "Uníssono Aumentado",
+                    "Semitom Cromático"
+                ],
+                correctAnswer: 1,
+                explanation: "1 semitom forma uma Segunda Menor. É o menor intervalo na música ocidental, também chamado de semitom cromático."
+            },
+            {
+                id: 24,
+                question: "Qual nota está a 12 semitons acima de Dó?",
+                options: [
+                    "Ré",
+                    "Dó (uma oitava acima)",
+                    "Sol",
+                    "Fá"
+                ],
+                correctAnswer: 1,
+                explanation: "12 semitons acima de Dó é Dó novamente, mas uma oitava acima. Uma oitava completa tem 12 semitons."
+            },
+            {
+                id: 25,
+                question: "Qual é a distância em semitons de Si para Dó#?",
+                options: [
+                    "1 semitom",
+                    "2 semitons",
+                    "3 semitons",
+                    "4 semitons"
+                ],
+                correctAnswer: 1,
+                explanation: "A distância de Si para Dó# é de 2 semitons. O caminho é: Si → Dó → Dó#."
+            },
+            {
+                id: 26,
+                question: "Qual intervalo é formado por 6 semitons?",
+                options: [
+                    "Quinta Justa",
+                    "Sexta Menor",
+                    "Trítono",
+                    "Quinta Aumentada"
+                ],
+                correctAnswer: 2,
+                explanation: "6 semitons formam um Trítono (também chamado de Quinta Aumentada ou Quarta Diminuta). É um intervalo muito dissonante."
+            },
+            {
+                id: 27,
+                question: "Qual é a distância em semitons de Ré para Lá?",
+                options: [
+                    "5 semitons",
+                    "6 semitons",
+                    "7 semitons",
+                    "8 semitons"
+                ],
+                correctAnswer: 2,
+                explanation: "A distância de Ré para Lá é de 7 semitons, formando uma Quinta Justa."
+            },
+            {
+                id: 28,
+                question: "Qual intervalo é formado por 8 semitons?",
+                options: [
+                    "Sexta Menor",
+                    "Sexta Maior",
+                    "Sétima Menor",
+                    "Quinta Aumentada"
+                ],
+                correctAnswer: 2,
+                explanation: "8 semitons formam uma Sétima Menor. Este é um intervalo muito usado em jazz, blues e música moderna."
+            },
+            {
+                id: 29,
+                question: "Qual é a distância em semitons de Fá para Dó?",
+                options: [
+                    "5 semitons",
+                    "6 semitons",
+                    "7 semitons",
+                    "8 semitons"
+                ],
+                correctAnswer: 2,
+                explanation: "A distância de Fá para Dó é de 7 semitons, formando uma Quinta Justa."
+            },
+            {
+                id: 30,
+                question: "Qual intervalo é formado por 9 semitons?",
+                options: [
+                    "Sexta Maior",
+                    "Sétima Menor",
+                    "Sétima Maior",
+                    "Oitava Diminuta"
+                ],
+                correctAnswer: 0,
+                explanation: "9 semitons formam uma Sexta Maior. Este é um intervalo consonante e harmonioso. A Sétima Maior é formada por 11 semitons."
             }
         ];
 
@@ -644,9 +956,25 @@
         let studentName = "";
         let answers = [];
         let submitted = false;
+        let shuffledQuestions = [];
 
-        // INICIALIZAR RESPOSTAS
+        // INICIALIZAR RESPOSTAS E EMBARALHAR ALTERNATIVAS
         function initializeAnswers() {
+            shuffledQuestions = questions.map(q => {
+                const optionsWithIndices = q.options.map((option, index) => ({
+                    text: option,
+                    originalIndex: index
+                }));
+
+                const shuffled = shuffleArray(optionsWithIndices);
+
+                return {
+                    ...q,
+                    shuffledOptions: shuffled.map(o => o.text),
+                    indexMapping: shuffled.map(o => o.originalIndex)
+                };
+            });
+
             answers = questions.map(q => ({
                 questionId: q.id,
                 selectedAnswer: null,
@@ -672,27 +1000,26 @@
 
         // EXIBIR PERGUNTA
         function displayQuestion() {
-            const question = questions[currentQuestionIndex];
+            const originalQuestion = questions[currentQuestionIndex];
+            const shuffledQuestion = shuffledQuestions[currentQuestionIndex];
             const answer = answers[currentQuestionIndex];
 
-            // Atualizar contador
-            document.getElementById('questionCounter').textContent = `${currentQuestionIndex + 1}/${questions.length}`;
+            document.getElementById('questionCounter').textContent = `${currentQuestionIndex + 1}/30`;
 
-            // Atualizar barra de progresso
-            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+            const progress = ((currentQuestionIndex + 1) / 30) * 100;
             document.getElementById('progressFill').style.width = progress + '%';
 
-            // Exibir pergunta
-            document.getElementById('questionText').textContent = question.question;
+            document.getElementById('questionText').textContent = originalQuestion.question;
 
-            // Exibir opções
             const optionsContainer = document.getElementById('optionsContainer');
             optionsContainer.innerHTML = '';
 
-            question.options.forEach((option, index) => {
+            shuffledQuestion.shuffledOptions.forEach((option, shuffledIndex) => {
+                const originalIndex = shuffledQuestion.indexMapping[shuffledIndex];
+                
                 const optionDiv = document.createElement('div');
-                optionDiv.className = 'option' + (answer.selectedAnswer === index ? ' selected' : '');
-                optionDiv.onclick = () => selectAnswer(index);
+                optionDiv.className = 'option' + (answer.selectedAnswer === originalIndex ? ' selected' : '');
+                optionDiv.onclick = () => selectAnswer(originalIndex);
                 optionDiv.innerHTML = `
                     <div class="option-radio"></div>
                     <div class="option-text">${option}</div>
@@ -700,7 +1027,6 @@
                 optionsContainer.appendChild(optionDiv);
             });
 
-            // Atualizar botões
             document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
             
             if (currentQuestionIndex === questions.length - 1) {
@@ -713,9 +1039,9 @@
         }
 
         // SELECIONAR RESPOSTA
-        function selectAnswer(optionIndex) {
+        function selectAnswer(originalIndex) {
             if (!submitted) {
-                answers[currentQuestionIndex].selectedAnswer = optionIndex;
+                answers[currentQuestionIndex].selectedAnswer = originalIndex;
                 displayQuestion();
             }
         }
@@ -738,7 +1064,6 @@
 
         // ENVIAR TESTE
         function submitTest() {
-            // Calcular respostas corretas
             answers.forEach((answer, index) => {
                 answer.isCorrect = answer.selectedAnswer === questions[index].correctAnswer;
             });
@@ -754,22 +1079,19 @@
 
             const score = calculateScore();
 
-            // Atualizar informações
             document.getElementById('resultStudentName').textContent = studentName;
             document.getElementById('scorePercentage').textContent = score.percentage + '%';
             document.getElementById('scoreText').textContent = `${score.correct} de ${score.total} acertos`;
 
-            // Atualizar círculo de pontuação
             const scoreCircle = document.getElementById('scoreCircle');
             if (score.percentage >= 60) {
                 scoreCircle.className = 'score-circle pass';
-                document.getElementById('resultMessage').textContent = '🎉 Parabéns! Você passou no teste!';
+                document.getElementById('resultMessage').textContent = 'Parabéns! Você passou no teste!';
             } else {
                 scoreCircle.className = 'score-circle fail';
                 document.getElementById('resultMessage').textContent = 'Continue estudando e tente novamente!';
             }
 
-            // Exibir detalhes das respostas
             const resultsList = document.getElementById('resultsList');
             resultsList.innerHTML = '';
 
@@ -844,13 +1166,12 @@ DETALHES DAS RESPOSTAS
 Pergunta ${index + 1}: ${question.question}
 Resposta do aluno: ${selectedOption}
 Resposta correta: ${correctOption}
-Status: ${answer.isCorrect ? '✓ CORRETO' : '✗ INCORRETO'}
+Status: ${answer.isCorrect ? 'CORRETO' : 'INCORRETO'}
 Explicação: ${question.explanation}
 
 `;
             });
 
-            // Criar e baixar arquivo
             const element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(resultsText));
             element.setAttribute('download', `teste_tom_semitom_${studentName}_${now.getTime()}.txt`);
