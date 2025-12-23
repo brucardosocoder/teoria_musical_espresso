@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Tom e Semitom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid #fcd34d;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* TELA DE ENTRADA */
+        .name-input-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .name-input-screen .card {
+            text-align: center;
+        }
+
+        .name-input-screen h1 {
+            color: #92400e;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .name-input-screen p {
+            color: #b45309;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #fcd34d;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #92400e;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: #f59e0b;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #d97706;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #d97706;
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background-color: #b45309;
+        }
+
+        .btn-primary:disabled {
+            background-color: #d1d5db;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .info-box {
+            background-color: #fef08a;
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #92400e;
+            line-height: 1.6;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* TELA DE TESTE */
+        .test-screen {
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #fcd34d;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #d97706;
+            transition: width 0.3s ease;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .question-header h1 {
+            color: #92400e;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .question-number {
+            background-color: #fcd34d;
+            color: #92400e;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .question-text {
+            font-size: 18px;
+            color: #92400e;
+            font-weight: 600;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border: 2px solid #fcd34d;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .option:hover {
+            border-color: #f59e0b;
+            background-color: #fffbeb;
+        }
+
+        .option.selected {
+            border-color: #d97706;
+            background-color: #fef3c7;
+        }
+
+        .option-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fcd34d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .option.selected .option-radio {
+            border-color: #d97706;
+            background-color: #d97706;
+        }
+
+        .option.selected .option-radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .option-text {
+            color: #92400e;
+            font-size: 16px;
+            flex: 1;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+        }
+
+        .btn-secondary {
+            background-color: #d1d5db;
+            color: #374151;
+            flex: 1;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background-color: #9ca3af;
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-success {
+            background-color: #16a34a;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-success:hover {
+            background-color: #15803d;
+        }
+
+        .btn-next {
+            background-color: #d97706;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-next:hover {
+            background-color: #b45309;
+        }
+
+        /* TELA DE RESULTADOS */
+        .results-screen {
+            display: none;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .results-header h1 {
+            color: #92400e;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .student-name {
+            color: #b45309;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .score-circle.pass {
+            background-color: #10b981;
+        }
+
+        .score-circle.fail {
+            background-color: #ef4444;
+        }
+
+        .score-text {
+            font-size: 18px;
+            color: #92400e;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #92400e;
+        }
+
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .result-item {
+            padding: 20px;
+            border-left: 4px solid;
+            border-radius: 8px;
+            background-color: #f9fafb;
+        }
+
+        .result-item.correct {
+            border-left-color: #10b981;
+            background-color: #f0fdf4;
+        }
+
+        .result-item.incorrect {
+            border-left-color: #ef4444;
+            background-color: #fef2f2;
+        }
+
+        .result-item-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .result-icon {
+            font-size: 20px;
+        }
+
+        .result-question {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .result-answer {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .result-explanation {
+            background-color: white;
+            padding: 12px;
+            border-left: 2px solid #fcd34d;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #92400e;
+            line-height: 1.6;
+        }
+
+        .result-explanation strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .button-group-results {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-download {
+            background-color: #3b82f6;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-download:hover {
+            background-color: #2563eb;
+        }
+
+        .btn-restart {
+            background-color: #d97706;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-restart:hover {
+            background-color: #b45309;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 24px;
+            }
+
+            .name-input-screen h1 {
+                font-size: 24px;
+            }
+
+            .question-header h1 {
+                font-size: 20px;
+            }
+
+            .question-text {
+                font-size: 16px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button-group-results {
+                flex-direction: column;
+            }
+
+            .btn-download,
+            .btn-restart {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- TELA 1: ENTRADA DE NOME -->
+        <div class="name-input-screen" id="nameInputScreen">
+            <div class="card">
+                <h1>Teste de Tom e Semitom</h1>
+                <p>Avalie seus conhecimentos sobre teoria musical</p>
+
+                <div class="form-group">
+                    <label for="studentName">Seu nome:</label>
+                    <input 
+                        type="text" 
+                        id="studentName" 
+                        placeholder="Digite seu nome"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <button class="btn btn-primary" id="startBtn" onclick="startTest()">
+                    Iniciar Teste
+                </button>
+
+                <div class="info-box">
+                    <strong>Informações:</strong>
+                    Este teste contém 5 perguntas sobre tom e semitom. Você terá a oportunidade de revisar suas respostas antes de enviar.
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA 2: TESTE -->
+        <div class="test-screen" id="testScreen">
+            <div class="card">
+                <div class="question-header">
+                    <h1>Teste de Tom e Semitom</h1>
+                    <span class="question-number" id="questionCounter">1/5</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+                </div>
+
+                <div class="question-text" id="questionText"></div>
+
+                <div class="options-container" id="optionsContainer"></div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>
+                        ← Anterior
+                    </button>
+                    <button class="btn btn-next" id="nextBtn" onclick="nextQuestion()">
+                        Próxima →
+                    </button>
+                    <button class="btn btn-success" id="submitBtn" onclick="submitTest()" style="display: none;">
+                        Enviar Teste
+                    </button>
+                </div>
+
+                <div class="info-box">
+                    <strong>Dica:</strong> Você pode navegar entre as perguntas antes de enviar o teste. Revise suas respostas antes de confirmar.
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA 3: RESULTADOS -->
+        <div class="results-screen" id="resultsScreen">
+            <div class="card">
+                <div class="results-header">
+                    <h1>Resultado do Teste</h1>
+                    <p class="student-name">Aluno: <strong id="resultStudentName"></strong></p>
+
+                    <div class="score-circle" id="scoreCircle">
+                        <span id="scorePercentage">0%</span>
+                    </div>
+
+                    <p class="score-text">
+                        <span id="scoreText">0 de 5 acertos</span>
+                    </p>
+
+                    <p class="message" id="resultMessage"></p>
+                </div>
+
+                <div class="results-list" id="resultsList"></div>
+
+                <div class="button-group-results">
+                    <button class="btn btn-download" id="downloadBtn" onclick="downloadResults()">
+                        📥 Baixar Resultado
+                    </button>
+                    <button class="btn btn-restart" id="restartBtn" onclick="resetTest()">
+                        🔄 Fazer Teste Novamente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DADOS DAS PERGUNTAS
+        const questions = [
+            {
+                id: 1,
+                question: "O que é um semitom?",
+                options: [
+                    "A menor distância possível entre duas notas na escala cromática",
+                    "A distância equivalente a dois tons",
+                    "A distância entre a primeira e segunda nota de uma escala",
+                    "Um intervalo musical que só existe em escalas maiores"
+                ],
+                correctAnswer: 0,
+                explanation: "O semitom (ou meio tom) é a menor distância possível entre duas notas na escala cromática. No teclado, é o movimento de uma tecla para a tecla imediatamente adjacente."
+            },
+            {
+                id: 2,
+                question: "Qual é a relação entre tom e semitom?",
+                options: [
+                    "Um tom é igual a um semitom",
+                    "Um tom é equivalente a dois semitons",
+                    "Um semitom é equivalente a dois tons",
+                    "Não existe relação entre tom e semitom"
+                ],
+                correctAnswer: 1,
+                explanation: "O tom (ou tom inteiro) é a distância equivalente a dois semitons. A estrutura é: Semitom + Semitom = Tom."
+            },
+            {
+                id: 3,
+                question: "Qual é a fórmula da Escala Maior?",
+                options: [
+                    "S-S-T-S-S-S-T",
+                    "T-T-S-T-T-T-S",
+                    "T-S-T-S-T-S-T",
+                    "S-T-S-T-S-T-S"
+                ],
+                correctAnswer: 1,
+                explanation: "A fórmula da Escala Maior é T-T-S-T-T-T-S (Tom-Tom-Semitom-Tom-Tom-Tom-Semitom). Esta sequência é a 'receita' para construir qualquer escala maior, começando de qualquer nota."
+            },
+            {
+                id: 4,
+                question: "Entre quais graus da Escala Maior ocorrem os semitons?",
+                options: [
+                    "Entre o 1º e 2º graus e entre o 5º e 6º graus",
+                    "Entre o 2º e 3º graus e entre o 6º e 7º graus",
+                    "Entre o 3º e 4º graus e entre o 7º e 8º graus",
+                    "Entre o 4º e 5º graus e entre o 8º e 9º graus"
+                ],
+                correctAnswer: 2,
+                explanation: "Os semitons na Escala Maior ocorrem entre o 3º e 4º graus (Mi-Fá) e entre o 7º e 8º graus (Si-Dó). Esta é uma característica fundamental da Escala Maior."
+            },
+            {
+                id: 5,
+                question: "Qual é a distância em semitons de Dó para Ré?",
+                options: [
+                    "1 semitom",
+                    "2 semitons",
+                    "3 semitons",
+                    "4 semitons"
+                ],
+                correctAnswer: 1,
+                explanation: "A distância de Dó para Ré é de 2 semitons, ou seja, 1 tom inteiro. O caminho é: Dó → Dó# → Ré."
+            }
+        ];
+
+        // ESTADO DA APLICAÇÃO
+        let currentQuestionIndex = 0;
+        let studentName = "";
+        let answers = [];
+        let submitted = false;
+
+        // INICIALIZAR RESPOSTAS
+        function initializeAnswers() {
+            answers = questions.map(q => ({
+                questionId: q.id,
+                selectedAnswer: null,
+                isCorrect: false
+            }));
+        }
+
+        // INICIAR TESTE
+        function startTest() {
+            const nameInput = document.getElementById('studentName');
+            studentName = nameInput.value.trim();
+
+            if (!studentName) {
+                alert('Por favor, digite seu nome!');
+                return;
+            }
+
+            initializeAnswers();
+            document.getElementById('nameInputScreen').style.display = 'none';
+            document.getElementById('testScreen').style.display = 'block';
+            displayQuestion();
+        }
+
+        // EXIBIR PERGUNTA
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            const answer = answers[currentQuestionIndex];
+
+            // Atualizar contador
+            document.getElementById('questionCounter').textContent = `${currentQuestionIndex + 1}/${questions.length}`;
+
+            // Atualizar barra de progresso
+            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            // Exibir pergunta
+            document.getElementById('questionText').textContent = question.question;
+
+            // Exibir opções
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option' + (answer.selectedAnswer === index ? ' selected' : '');
+                optionDiv.onclick = () => selectAnswer(index);
+                optionDiv.innerHTML = `
+                    <div class="option-radio"></div>
+                    <div class="option-text">${option}</div>
+                `;
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            // Atualizar botões
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            
+            if (currentQuestionIndex === questions.length - 1) {
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('submitBtn').style.display = 'inline-block';
+            } else {
+                document.getElementById('nextBtn').style.display = 'inline-block';
+                document.getElementById('submitBtn').style.display = 'none';
+            }
+        }
+
+        // SELECIONAR RESPOSTA
+        function selectAnswer(optionIndex) {
+            if (!submitted) {
+                answers[currentQuestionIndex].selectedAnswer = optionIndex;
+                displayQuestion();
+            }
+        }
+
+        // PRÓXIMA PERGUNTA
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        }
+
+        // PERGUNTA ANTERIOR
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+        // ENVIAR TESTE
+        function submitTest() {
+            // Calcular respostas corretas
+            answers.forEach((answer, index) => {
+                answer.isCorrect = answer.selectedAnswer === questions[index].correctAnswer;
+            });
+
+            submitted = true;
+            showResults();
+        }
+
+        // EXIBIR RESULTADOS
+        function showResults() {
+            document.getElementById('testScreen').style.display = 'none';
+            document.getElementById('resultsScreen').style.display = 'block';
+
+            const score = calculateScore();
+
+            // Atualizar informações
+            document.getElementById('resultStudentName').textContent = studentName;
+            document.getElementById('scorePercentage').textContent = score.percentage + '%';
+            document.getElementById('scoreText').textContent = `${score.correct} de ${score.total} acertos`;
+
+            // Atualizar círculo de pontuação
+            const scoreCircle = document.getElementById('scoreCircle');
+            if (score.percentage >= 60) {
+                scoreCircle.className = 'score-circle pass';
+                document.getElementById('resultMessage').textContent = '🎉 Parabéns! Você passou no teste!';
+            } else {
+                scoreCircle.className = 'score-circle fail';
+                document.getElementById('resultMessage').textContent = 'Continue estudando e tente novamente!';
+            }
+
+            // Exibir detalhes das respostas
+            const resultsList = document.getElementById('resultsList');
+            resultsList.innerHTML = '';
+
+            questions.forEach((question, index) => {
+                const answer = answers[index];
+                const isCorrect = answer.isCorrect;
+
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item ' + (isCorrect ? 'correct' : 'incorrect');
+
+                const icon = isCorrect ? '✓' : '✗';
+                const selectedOption = answer.selectedAnswer !== null ? question.options[answer.selectedAnswer] : 'Não respondida';
+                const correctOption = question.options[question.correctAnswer];
+
+                resultItem.innerHTML = `
+                    <div class="result-item-header">
+                        <span class="result-icon">${icon}</span>
+                        <div class="result-question">Pergunta ${index + 1}: ${question.question}</div>
+                    </div>
+                    <div class="result-answer">
+                        <strong>Sua resposta:</strong> ${selectedOption}
+                    </div>
+                    ${!isCorrect ? `<div class="result-answer"><strong>Resposta correta:</strong> ${correctOption}</div>` : ''}
+                    <div class="result-explanation">
+                        <strong>Explicação:</strong> ${question.explanation}
+                    </div>
+                `;
+
+                resultsList.appendChild(resultItem);
+            });
+        }
+
+        // CALCULAR PONTUAÇÃO
+        function calculateScore() {
+            const correct = answers.filter(a => a.isCorrect).length;
+            return {
+                correct: correct,
+                total: questions.length,
+                percentage: Math.round((correct / questions.length) * 100)
+            };
+        }
+
+        // BAIXAR RESULTADOS
+        function downloadResults() {
+            const score = calculateScore();
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('pt-BR');
+            const timeStr = now.toLocaleTimeString('pt-BR');
+
+            let resultsText = `
+RESULTADO DO TESTE - TOM E SEMITOM
+=====================================
+Aluno: ${studentName}
+Data: ${dateStr}
+Hora: ${timeStr}
+
+DESEMPENHO
+=====================================
+Acertos: ${score.correct}/${score.total}
+Porcentagem: ${score.percentage}%
+
+DETALHES DAS RESPOSTAS
+=====================================
+`;
+
+            answers.forEach((answer, index) => {
+                const question = questions[index];
+                const selectedOption = answer.selectedAnswer !== null ? question.options[answer.selectedAnswer] : 'Não respondida';
+                const correctOption = question.options[question.correctAnswer];
+
+                resultsText += `
+Pergunta ${index + 1}: ${question.question}
+Resposta do aluno: ${selectedOption}
+Resposta correta: ${correctOption}
+Status: ${answer.isCorrect ? '✓ CORRETO' : '✗ INCORRETO'}
+Explicação: ${question.explanation}
+
+`;
+            });
+
+            // Criar e baixar arquivo
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(resultsText));
+            element.setAttribute('download', `teste_tom_semitom_${studentName}_${now.getTime()}.txt`);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // REINICIAR TESTE
+        function resetTest() {
+            currentQuestionIndex = 0;
+            studentName = '';
+            submitted = false;
+            initializeAnswers();
+
+            document.getElementById('nameInputScreen').style.display = 'flex';
+            document.getElementById('testScreen').style.display = 'none';
+            document.getElementById('resultsScreen').style.display = 'none';
+            document.getElementById('studentName').value = '';
+            document.getElementById('studentName').focus();
+        }
+
+        // PERMITIR ENTER PARA INICIAR
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('studentName').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    startTest();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
