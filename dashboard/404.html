@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecionando...</title>
+    <script>
+        // GitHub Pages 404 redirect trick for single page applications
+        // This file redirects all 404s to index.html with the original path preserved
+        
+        const pathSegments = window.location.pathname.split('/').filter(Boolean);
+        
+        // Get the base path (e.g., 'teoria_musical_espresso/dashboard')
+        const basePath = pathSegments.slice(0, -1).join('/');
+        
+        // Redirect to index.html with the original path as a query parameter
+        const redirectPath = `/${basePath}/index.html?redirect=${window.location.pathname}${window.location.search}`;
+        
+        window.location.replace(redirectPath);
+    </script>
+</head>
+<body>
+    <p>Redirecionando...</p>
+</body>
+</html>
