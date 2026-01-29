@@ -1,9 +1,4 @@
-/* ============================================
-   TEORIA MUSICAL ESPRESSO - JAVASCRIPT
-   Aplicação completa com navegação, exercícios e dashboard
-   ============================================ */
 
-// Estado da aplicação
 const app = {
     currentPage: 'home',
     sidebarOpen: false,
@@ -11,7 +6,7 @@ const app = {
     userAnswers: [],
     showGabarito: false,
     
-    // Dados persistidos (carregados do localStorage se existirem)
+
     userData: JSON.parse(localStorage.getItem('espresso_user_data')) || {
         completedExercises: {}, // { id: { score: 100, date: '...' } }
         totalTests: 0,
@@ -22,7 +17,7 @@ const app = {
         performance: [45, 52, 65, 72, 85, 0] // Mock inicial + valor atual
     },
 
-    // Dados dos exercícios
+
     exercises: [
         {
             id: 'tom-semitom',
@@ -166,7 +161,7 @@ const app = {
         },
     ],
 
-    // Dados de conquistas
+
     achievements: [
         { id: 'first-step', title: 'Primeiro Passo', description: 'Complete seu primeiro teste', icon: '🚀' },
         { id: 'apprentice', title: 'Aprendiz', description: 'Complete 5 testes', icon: '📚' },
@@ -181,7 +176,7 @@ const app = {
     ],
 };
 
-// Inicializar aplicação
+
 document.addEventListener('DOMContentLoaded', () => {
     // Atualizar bloqueios baseados no progresso
     updateLockedStatus();
@@ -204,7 +199,7 @@ function saveData() {
     localStorage.setItem('espresso_user_data', JSON.stringify(app.userData));
 }
 
-// Renderizar aplicação
+
 function renderApp() {
     const appElement = document.getElementById('app');
     appElement.innerHTML = `
@@ -224,7 +219,7 @@ function renderApp() {
     }
 }
 
-// Renderizar sidebar
+
 function renderSidebar() {
     const navItems = [
         { label: 'Visão Geral', icon: '📊', page: 'home' },
@@ -269,7 +264,7 @@ function renderSidebar() {
     `;
 }
 
-// Renderizar top bar
+
 function renderTopBar() {
     const titles = {
         home: 'Visão Geral',
@@ -290,7 +285,7 @@ function renderTopBar() {
     `;
 }
 
-// Renderizar página
+
 function renderPage() {
     switch (app.currentPage) {
         case 'home': return renderHomePage();
@@ -302,7 +297,7 @@ function renderPage() {
     }
 }
 
-// Página Home
+
 function renderHomePage() {
     const completedCount = Object.keys(app.userData.completedExercises).length;
     const avgScore = completedCount > 0 ? Math.round(Object.values(app.userData.completedExercises).reduce((a, b) => a + b.score, 0) / completedCount) : 0;
@@ -383,7 +378,7 @@ function renderHomePage() {
     `;
 }
 
-// Página de Exercícios
+
 function renderExercisesPage() {
     const cardsHtml = app.exercises.map(ex => {
         const completed = app.userData.completedExercises[ex.id];
@@ -416,7 +411,7 @@ function renderExercisesPage() {
     `;
 }
 
-// Página de Quiz
+
 function renderQuizPage() {
     const ex = app.currentExercise;
     if (!ex) return '';
@@ -474,7 +469,7 @@ function renderGabarito() {
     const score = (correctCount / ex.questions.length) * 100;
     const passed = score === 100;
 
-    // Atualizar dados do usuário
+   
     app.userData.totalTests++;
     const now = new Date();
     const dateStr = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
@@ -520,7 +515,7 @@ function renderGabarito() {
     `;
 }
 
-// Outras páginas (Histórico e Conquistas)
+
 function renderHistoryPage() {
     return `
         <div class="page-header">
@@ -576,7 +571,7 @@ function renderAchievementsPage() {
     `;
 }
 
-// Event Listeners
+
 function setupEventListeners() {
     document.addEventListener('click', (e) => {
         if (e.target.id === 'menu-toggle') {
@@ -646,7 +641,7 @@ function setupEventListeners() {
     });
 }
 
-// Gráficos
+
 function renderCharts() {
     const perfCtx = document.getElementById('performanceChart');
     if (perfCtx) {
