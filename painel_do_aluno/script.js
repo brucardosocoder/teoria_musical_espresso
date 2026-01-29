@@ -209,6 +209,10 @@ function renderApp() {
                 ${renderTopBar()}
                 <div class="content-area">
                     ${renderPage()}
+                    <footer class="app-footer">
+                        &copy; 2025 Teoria Musical Espresso. Todos os direitos reservados. Desenvolvido por
+                        <a href="https://wa.me/5521989978029" target="_blank">Bru Cardoso Coder.</a>
+                    </footer>
                 </div>
             </div>
         </div>
