@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:url" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Teoria Musical">
+    <meta property="og:description" content="Teoria Musical">
+    <meta property="og:image" content="https://brucardosocoder.github.io/teoria_musical_espresso/teoria_musicalog.png">    
+    <meta property="og:logo" content="https://brucardosocoder.github.io/teoria_musical_espresso/teoria_musicalog.png">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta property="twitter:url" content="https://brucardosocoder.github.io/teoria_musical_espresso">
+    <meta name="twitter:title" content="Teoria Musical">
+    <meta name="twitter:description" content="Teoria Musical">
+    <meta name="twitter:image" content="https://brucardosocoder.github.io/luabrilhante/teoria_musical_espresso/teoria_musicalog.png">
+    <title>Teoria Musical Espresso - Página Inicial</title>
+    <style>
+        :root {
+            --color-primary: #3a2a19;
+            --color-primary-light: #818cf8;
+            --color-secondary: #f59e0b;
+            --color-accent: #ef4444;
+            --color-background: #ebdbc3;
+            --color-foreground: #1f2937;
+            --color-card: #ffffff;
+            --color-border: #e5e7eb;
+            --color-muted: #f3f4f6;
+            --color-muted-text: #6b7280;
+
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --font-size-5xl: 3rem;
+
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-background);
+            color: var(--color-foreground);
+            line-height: 1.6;
+            font-size: var(--font-size-base);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--color-background) 0%, var(--color-muted) 100%);
+            border-bottom: 2px solid var(--color-border);
+            padding: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header-logo {
+            display: block;
+            max-width: 500px;
+            width: 80%;
+            height: auto;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .painel-do-aluno {
+            text-align: center;
+        }
+
+        .painel-do-aluno button {
+            background-color: var(--color-primary); /* Cor vibrante */
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px; /* Bordas arredondadas */
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease; /* Suaviza a animação */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.555); /* Sombra leve */
+            border: 5px solid var(--color-secondary);
+        }
+
+        .painel-do-aluno button:hover {
+            background-color: var(--color-primary); /* Cor mais escura no hover */
+            transform: translateY(-2px); /* Levanta o botão levemente */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.658); /* Aumenta a sombra */
+        }
+        
+        @media (max-width: 600px) {
+            .header-logo {
+                max-width: 350px;
+            }
+        }
+        
+        .main {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .section-card {
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-3xl);
+        }
+        
+        h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: var(--spacing-sm);
+        }
+        
+        h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-secondary);
+        }
+        
+        p {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .footer {
+            border-top: 1px solid var(--color-border);
+            background-color: var(--color-muted);
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-3xl);
+        }
+        
+        .footer p {
+            text-align: center;
+            font-size: var(--font-size-sm);
+            color: var(--color-muted-text);
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-sm);
+            font-weight: 700;
+            text-align: center;
+            color: var(--color-foreground);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .explanation-box {
+            background-color: var(--color-muted);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-3xl);
+            text-align: center;
+        }
+        
+        .explanation-box p {
+            font-size: var(--font-size-lg);
+            color: var(--color-muted-text);
+            margin: 0;
+        }
+        
+        .lesson-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: var(--spacing-md);
+        }
+        
+        .lesson-list li {
+            margin: 0;
+        }
+        
+        .lesson-list a {
+            display: block;
+            padding: var(--spacing-lg);
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: var(--color-foreground);
+            font-weight: 600;
+            transition: all 200ms ease-out;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .lesson-list a:hover {
+            background-color: var(--color-muted);
+            border-color: var(--color-primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .lesson-list strong {
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class='header'>
+        <div class='container'>
+            <img src="logo_teoria_musical_espresso_v2.png" alt="Teoria Musical Espresso Logo" class="header-logo">
+            <h2 class='hero-subtitle'>Doses curtas, concentradas e satisfatórias, como um bom café espresso.</h2>
+        </div>
+        <div class="painel-do-aluno">
+            <a href="/teoria_musical_espresso/dashboard/index.html"><button>Painel do Aluno</button></a>
+        </div>
+    </div>
+    <div class='main'>
+        <div class='container'>
+            <div class='explanation-box'   style="display: none";>
+                <p></p>
+            </div>
+            
+            <div class='section-card'>                
+                <ul class='lesson-list'>
+                    <li><a href="tomesemitom.html">☕ <strong>Dose 1:</strong> Tom e Semitom</a></li>
+                    <li><a href="intervalosmusicais.html">☕ <strong>Dose 2:</strong> Intervalos Musicais</a></li>
+                    <li><a href="escalasmaiores.html">☕ <strong>Dose 3:</strong> Escalas Maiores e Armadura de Clave</a></li>
+                    <li><a href="escalasmenores.html">☕ <strong>Dose 4:</strong> Escalas Menores (Natural, Harmônica e Melódica)</a></li>
+                     <li><a href="triades.html">☕ <strong>Dose 5:</strong> Tríades (Formação de Acordes)</a></li>
+                    <li><a href="campoharmonico.html">☕ <strong>Dose 6:</strong> Campo Harmônico Maior e Menor</a></li>
+                    <li><a href="funcoesharmonicas.html">☕ <strong>Dose 7:</strong> Funções Harmônicas e Cadências</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class='footer'>
+        <div class='container'>
+            <p>&copy; 2025 Teoria Musical Espresso. Todos os direitos reservados. Desenvolvido por <a href="https://wa.me/5521989978029" target="_blank" class="underline">Bru Cardoso Coder.</a></p>
+        </div>
+    </div>
+</body>
+</html>
