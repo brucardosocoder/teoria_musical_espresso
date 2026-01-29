@@ -1,10 +1,3 @@
-/* ============================================
-   TEORIA MUSICAL ESPRESSO - STYLESHEET
-   Design: Minimalismo Moderno com Toque Caloroso
-   Cores: Laranja queimado (#D2691E), Marrom chocolate (#8B4513)
-   Otimização: Foco em responsividade, proporções e conforto visual.
-   ============================================ */
-
 * {
     margin: 0;
     padding: 0;
@@ -60,9 +53,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* ============================================
-   LAYOUT GERAL
-   ============================================ */
 
 .app-container {
     display: flex;
@@ -71,9 +61,7 @@ body {
     overflow: hidden;
 }
 
-/* ============================================
-   SIDEBAR
-   ============================================ */
+
 
 .sidebar {
     width: 280px;
@@ -214,9 +202,6 @@ body {
     line-height: 1.5;
 }
 
-/* ============================================
-   MAIN CONTENT
-   ============================================ */
 
 .main-content {
     flex: 1;
@@ -270,9 +255,6 @@ body {
     scroll-behavior: smooth;
 }
 
-/* ============================================
-   COMPONENTES E PÁGINAS
-   ============================================ */
 
 .page-header {
     margin-bottom: var(--spacing-lg);
@@ -451,10 +433,6 @@ body {
     background-color: var(--primary-dark);
     transform: translateY(-1px);
 }
-
-/* ============================================
-   RESPONSIVIDADE (MEDIA QUERIES)
-   ============================================ */
 
 @media (max-width: 1024px) {
     .sidebar { width: 260px; }
