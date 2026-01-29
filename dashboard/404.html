@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecionando...</title>
+    <script>
+        // GitHub Pages 404 redirect trick for single page applications
+        // This file redirects all 404s to index.html with the original path preserved
+        
+        // Get the full pathname
+        const pathname = window.location.pathname;
+        const search = window.location.search;
+        
+        // If we're at the dashboard root, redirect directly to index.html
+        if (pathname.endsWith('/dashboard/') || pathname.endsWith('/dashboard')) {
+            window.location.replace('/teoria_musical_espresso/dashboard/index.html');
+        } else {
+            // For other routes, redirect to index.html with the original path preserved
+            const pathSegments = pathname.split('/').filter(Boolean);
+            const basePath = pathSegments.slice(0, -1).join('/');
+            const redirectPath = `/${basePath}/index.html?redirect=${pathname}${search}`;
+            window.location.replace(redirectPath);
+        }
+    </script>
+</head>
+<body>
+    <p>Redirecionando...</p>
+</body>
+</html>
